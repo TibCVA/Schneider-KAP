@@ -6,6 +6,7 @@
         "interest": "Sponsor global pour réseaux, data centers, bâtiments, services énergie. Membre du Comité Exécutif. Pilote le segment prioritaire pour CVA.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -17,6 +18,7 @@
         "interest": "Entrée pour décarbonation des procédés, efficacité énergétique industrielle, automation + IA dans les secteurs process et hybrides.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -28,6 +30,7 @@
         "interest": "Discussions IA à l’échelle, plateformes digitales client, gouvernance des données énergie et OT/IT. Clé pour connecter IA et transition énergétique.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -39,6 +42,7 @@
         "interest": "Co-production de rapports et points de vue visibles (data centers, réseaux, transition énergétique). Porte la dimension “brand” des travaux CVA x Schneider.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -50,6 +54,7 @@
         "interest": "Alignement des trajectoires net-zéro, intégration de l’impact des DC, réseaux et industrie dans la stratégie climat. Membre de l’ExCom depuis juin 2025.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -61,6 +66,7 @@
         "interest": "Programmes clients multi-pays ESG, énergie, décarbonation. Candidat naturel pour des offres de co-delivery CVA x Schneider.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -72,6 +78,7 @@
         "interest": "Partenaire clé conseil-conseil pour missions conjointes, diagnostics, programmes net-zéro, publications partagées. Point d’entrée n°1 pour CVA.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -83,6 +90,7 @@
         "interest": "Due diligences et business models software pour réseaux, usines, data centers ; jumeaux numériques et “agnostic software” dans les projets énergie.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -94,6 +102,7 @@
         "interest": "Co-construction de scénarios et rapports “AI & Energy”, analyses sur réseaux et systèmes électriques, adossement scientifique des POV CVA.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -105,6 +114,7 @@
         "interest": "Recherche sur la transition des systèmes énergétiques, sécurité d’approvisionnement, intégration des ENR et impact de l’IA sur la demande électrique.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -116,6 +126,7 @@
         "interest": "Production de recherche sur les nouveaux systèmes énergétiques et le chapitre digital (IA, data). Interlocuteur privilégié pour études AI & Energy.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "corporate",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -127,6 +138,7 @@
         "interest": "POV et études sur bâtiments bas carbone, gestion de l’énergie, plateformes de données énergie. Interlocuteur de référence pour EcoStruxure Power & Building.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -138,6 +150,7 @@
         "interest": "Construction de playbooks commerciaux, ciblage clients pour offres de performance énergétique, structuration des campagnes communes CVA x Schneider.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -149,6 +162,7 @@
         "interest": "Co-travaux sur modèles économiques de la rénovation, offres “net-zero building” pour grands portfolios immobiliers, santé, retail, etc.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -160,6 +174,7 @@
         "interest": "Entrée marché bâtiments France (tertiaire, collectivités), compréhension de la régulation locale et des programmes multi-sites de rénovation.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "europe_france",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -171,6 +186,7 @@
         "interest": "Sujets DSO/TSO, smart grid, portefeuilles SF₆-free et investissements réseau. Cible clé pour analyses “grid & transition énergétique”.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -182,6 +198,7 @@
         "interest": "Analyses sur expansion réseau, mobilité électrique, semi-conducteurs et besoins en puissance. Idéal pour scénarios infra / trilemme énergétique.",
         "priority": 2,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -193,6 +210,7 @@
         "interest": "Scénarios d’investissement réseau, rôle des data centers et de l’IA dans la charge, priorisation des zones de renforcement.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -204,6 +222,7 @@
         "interest": "Combiner eau, énergie, PFAS et effluents pour utilities et collectivités. Pont naturel vers les travaux CVA PFAS / eau / énergie.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "em_digital",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -215,6 +234,7 @@
         "interest": "Accès au marché réseau français, modernisation, projets démonstrateurs (notamment gamme AirSeT SF₆-free), dialogue avec DSO français.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "europe_france",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -226,6 +246,7 @@
         "interest": "Sponsor haut niveau pour POV et études globales DC & IA, transformation digitale des services. Pilote l’ensemble Secure Power, Data Centers & Global Services.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -237,6 +258,7 @@
         "interest": "Analyses marché hyperscalers, stratégies d’implantation DC, modèles de service “AI-ready DC as a Service”. Cible clé côté hyperscalers.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -248,6 +270,7 @@
         "interest": "Compréhension fine de la roadmap technologique DC (UPS, alimentation critique, refroidissement). Relais global sur la vision Secure Power.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -259,6 +282,7 @@
         "interest": "Vue européenne sur capacité, régulation et concurrence DC. Point d’entrée pour une lecture “Europe DC market” consolidée.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -270,6 +294,7 @@
         "interest": "Exécution commerciale DC & Secure Power en Europe, très visible sur AI & DC. Partenaire pour études DC Europe et actions marketing conjointes.",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -281,6 +306,7 @@
         "interest": "Dynamiques DC dans les marchés émergents (MEA, Asie, Amérique du Sud). Intéressant pour travaux sur accès à l’énergie et DC dans les zones de forte croissance.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -292,6 +318,7 @@
         "interest": "Cas d’usage techniques DC (densité, refroidissement liquide, modularité, edge) et business cases DC/IA autour des solutions EcoStruxure IT et du stockage.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -303,6 +330,7 @@
         "interest": "Learning sur les modèles de services DC (EcoConsult for Data Centers), modernisation des DC existants, possible extension de ces approches en Europe.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "data_center",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -314,6 +342,7 @@
         "interest": "Interlocutrice clé sur le marché DC français pour due diligences, études locales, co-évènements et ciblage des grands projets DC France.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "europe_france",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -325,6 +354,7 @@
         "interest": "Décarbonation de l’industrie lourde (Oil & Gas, chimie, etc.), arbitrage capex, projets complexes sur lesquels CVA peut intervenir (stratégie, due diligence).",
         "priority": 3,
         "statut": "À Contacter",
+        "bloc": "industry",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -336,6 +366,7 @@
         "interest": "Chaîne de valeur batteries et gigafactories, impacts de la mobilité électrique sur les réseaux, besoins énergétiques des usines de batteries.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "industry",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -347,6 +378,7 @@
         "interest": "Benchmark international sur programmes bâtiments et services de performance, utile pour inspirer les approches Europe / France.",
         "priority": 0,
         "statut": "À Contacter",
+        "bloc": "industry",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -358,6 +390,7 @@
         "interest": "Sponsor régional pour plans Europe data centers, réseaux, bâtiments, industrie. Nommé EVP Europe Operations en 2025, ancien Président Schneider Electric France.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "europe_france",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
@@ -369,11 +402,11 @@
         "interest": "Coordination globale du KAP France et validation des initiatives conjointes. Profil orienté Industrial Automation & clients finaux.",
         "priority": 1,
         "statut": "À Contacter",
+        "bloc": "europe_france",
         "notes": "",
         "last_interaction": "",
         "next_action_date": ""
     }
 ]
-
 
 
