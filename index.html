@@ -1,1 +1,575 @@
-i
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAP Schneider Electric - CVA (v4)</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement des icônes Lucide -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <!-- Configuration de Tailwind pour la police Inter -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'schneider-green': '#009e4d',
+                        'schneider-gray': '#4d4d4d',
+                    }
+                },
+            },
+        }
+    </script>
+    <!-- Style personnalisé -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Style pour les scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        /* Animation de survol sur les cartes stats */
+        .stat-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Classe pour les cartes archivées */
+        .archived {
+            opacity: 0.6;
+            filter: grayscale(80%);
+            transition: all 0.2s ease;
+        }
+        .archived:hover {
+            opacity: 1;
+            filter: grayscale(0);
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden">
+    <div class="flex h-screen bg-white">
+        <!-- Barre latérale -->
+        <nav class="w-20 lg:w-64 bg-gray-900 text-white p-4 flex flex-col shrink-0">
+            <div class="flex items-center justify-center lg:justify-start w-full mb-10 h-10">
+                <!-- Logo/Titre -->
+                <div class="w-10 h-10 bg-schneider-green rounded-full flex items-center justify-center shrink-0">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <span class="hidden lg:block text-xl font-bold ml-3">KAP Schneider</span>
+            </div>
+            
+            <ul class="flex flex-col items-center lg:items-start w-full space-y-3">
+                <!-- Bouton Vue d'ensemble -->
+                <li class="w-full">
+                    <button onclick="showPage('overview')" id="nav-overview" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-white bg-gray-700 transition-colors">
+                        <i data-lucide="layout-grid" class="w-6 h-6 shrink-0"></i>
+                        <span class="hidden lg:block ml-4">Vue d'ensemble</span>
+                    </button>
+                </li>
+                <!-- Bouton Contacts -->
+                <li class="w-full">
+                    <button onclick="showPage('contacts')" id="nav-contacts" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i data-lucide="users" class="w-6 h-6 shrink-0"></i>
+                        <span class="hidden lg:block ml-4">Contacts KAP</span>
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="mt-auto flex flex-col items-center lg:items-start w-full">
+                <!-- Statut des données -->
+                <div id="db-status" class="flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-xs text-gray-500">
+                    <div id="db-status-light" class="w-3 h-3 bg-yellow-500 rounded-full shrink-0"></div>
+                    <span id="db-status-text" class="hidden lg:block ml-2">Chargement données...</span>
+                </div>
+                 <!-- Note sur la modification -->
+                <div class="p-3 text-xs text-gray-600 w-full">
+                    <i data-lucide="edit" class="w-4 h-4 text-gray-500 hidden lg:inline-block mr-1"></i>
+                    <span class="hidden lg:inline">Modifiez via `data.json` sur GitHub.</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="flex-1 bg-gray-100 text-gray-900 overflow-y-auto">
+            
+            <!-- Page 1: Vue d'ensemble (Slides 1 & 2) -->
+            <div id="page-overview" class="page-content p-8 lg:p-12">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard KAP Schneider Electric</h1>
+                <p class="text-lg text-gray-600 mb-8">Positionnement CVA Energy et structure de l'organisation.</p>
+
+                <!-- Section 1: Dashboard Stats (Slide 1) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Segments -->
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-schneider-green">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="pie-chart" class="w-6 h-6 mr-3 text-schneider-green"></i>2 Segments Business</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-bold">Energy Management</h3>
+                                <p class="text-sm text-gray-600">~31.1 Md€. Priorité CVA (Réseaux, DC, Bâtiments).</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Industrial Automation</h3>
+                                <p class="text-sm text-gray-600">~7.0 Md€. Efficacité énergétique, digitalisation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Marchés Finaux -->
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-blue-500">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="target" class="w-6 h-6 mr-3 text-blue-500"></i>4 Marchés Finaux</h2>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-600">
+                            <li><span class="font-bold">Buildings</span> (Efficacité, Décarbonation)</li>
+                            <li><span class="font-bold">Data Center & Networks</span> (Croissance +++)</li>
+                            <li><span class="font-bold">Infrastructure</span> (Réseaux, Utilities)</li>
+                            <li><span class="font-bold">Industry</span> (Process, Hybride)</li>
+                        </ul>
+                    </div>
+                    <!-- Familles d'Offres -->
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-purple-500">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="package" class="w-6 h-6 mr-3 text-purple-500"></i>3 Familles d'Offres</h2>
+                        <ul class="list-none space-y-2 text-sm text-gray-600">
+                            <li><span class="font-bold">Products (~50 %):</span> Distribution, appareillage.</li>
+                            <li><span class="font-bold">Systems (~31 %):</span> Solutions packagées (Projets).</li>
+                            <li><span class="font-bold">Software & Services (~19 %):</span> Cible CVA.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 2: Structure (Slide 2) -->
+                <h1 class="text-3xl font-bold text-gray-800 mb-4 mt-12">Points d'Entrée Business</h1>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-4">Articulation Structurelle CVA</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Energy Management -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-schneider-green mb-2">Energy Management</h3>
+                            <p class="text-sm text-gray-600 mb-2">5 divisions clés :</p>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Power Systems (Réseaux)</li>
+                                <li>Secure Power (Data Centers)</li>
+                                <li>Digital Energy (EcoStruxure)</li>
+                                <li>Power Products (BT)</li>
+                                <li>Home & Distribution</li>
+                            </ul>
+                        </div>
+                        <!-- Industrial Automation -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-500 mb-2">Industrial Automation</h3>
+                            <p class="text-sm text-gray-600">Portefeuille automation, contrôle, software industriel. Porté par G. Avice-Huet.</p>
+                        </div>
+                        <!-- Axes Transverses -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-700 mb-2">Cibles CVA Transverses</h3>
+                            <p class="text-sm text-gray-600 mb-2">Points d'ancrage pour CVA :</p>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li><span class="font-bold">SE Advisory Services</span> (S. Wilhite)</li>
+                                <li><span class="font-bold">Agnostic Software</span> (C. Herzberg)</li>
+                                <li><span class="font-bold">Durabilité & SRI</span> (E. Finidori, T.A. Kwan)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: Contacts KAP (Slides 3-8) -->
+            <div id="page-contacts" class="page-content p-8 lg:p-12" style="display: none;">
+                <!-- Header Page Contacts -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Contacts KAP Schneider</h1>
+                        <p class="text-lg text-gray-600">Tableau de bord (Total: <span id="contact-count" class="font-bold">0</span>)</p>
+                    </div>
+                    <!-- Bouton de rafraîchissement des données -->
+                    <button onclick="loadContactsData(true)" class="mt-4 md:mt-0 bg-schneider-green hover:bg-green-700 text-white font-bold py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-5 h-5 mr-2"></i>
+                        Rafraîchir les données
+                    </button>
+                </div>
+
+                <!-- NOUVEAU: Mini-Dashboard Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="stat-card bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-sm font-medium text-gray-500">Priorité 1 (Max)</h3>
+                        <p id="stat-p1" class="text-3xl font-bold text-red-600">0</p>
+                    </div>
+                    <div class="stat-card bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-sm font-medium text-gray-500">Priorité 2 (Haute)</h3>
+                        <p id="stat-p2" class="text-3xl font-bold text-yellow-600">0</p>
+                    </div>
+                    <div class="stat-card bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-sm font-medium text-gray-500">À Contacter</h3>
+                        <p id="stat-todo" class="text-3xl font-bold text-blue-600">0</p>
+                    </div>
+                    <div class="stat-card bg-white p-4 rounded-lg shadow">
+                        <h3 class="text-sm font-medium text-gray-500">En Cours</h3>
+                        <p id="stat-ongoing" class="text-3xl font-bold text-orange-600">0</p>
+                    </div>
+                </div>
+
+                <!-- Filtres -->
+                <div class="bg-white p-4 rounded-lg shadow-sm mb-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <!-- Recherche -->
+                    <div class="relative w-full md:w-1/3">
+                        <label for="filter-search" class="sr-only">Rechercher</label>
+                        <input type="text" id="filter-search" placeholder="Rechercher par nom, poste, entité..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-schneider-green">
+                        <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                    <!-- Priorité -->
+                    <div class="w-full md:w-auto">
+                        <label for="filter-priority" class="text-sm font-medium text-gray-700 mr-2">Priorité:</label>
+                        <select id="filter-priority" class="border rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-schneider-green">
+                            <option value="all">Toutes</option>
+                            <option value="1">Niveau 1 (Max)</option>
+                            <option value="2">Niveau 2 (Haute)</option>
+                            <option value="3">Niveau 3 (Tactique)</option>
+                            <option value="0">Non définie</option>
+                        </select>
+                    </div>
+                    <!-- Statut -->
+                    <div class="w-full md:w-auto">
+                        <label for="filter-status" class="text-sm font-medium text-gray-700 mr-2">Statut:</label>
+                        <select id="filter-status" class="border rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-schneider-green">
+                            <option value="all">Tous</option>
+                            <option value="À Contacter">À Contacter</option>
+                            <option value="En Cours">En Cours</option>
+                            <option value="Suivi">Suivi</option>
+                            <option value="Archivé">Archivé</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grille des contacts -->
+                <div id="contacts-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Message de chargement -->
+                    <div id="loading-contacts" class="col-span-full text-center p-12">
+                        <i data-lucide="loader-circle" class="w-12 h-12 text-gray-400 animate-spin mx-auto"></i>
+                        <p class="text-gray-500 mt-4">Chargement des contacts depuis `data.json`...</p>
+                    </div>
+                    <!-- Message si vide -->
+                    <div id="empty-contacts" class="col-span-full text-center p-12 hidden">
+                        <i data-lucide="user-x" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                        <p class="text-gray-500 mt-4">Aucun contact trouvé.</p>
+                    </div>
+                    <!-- Les cartes de contact seront injectées ici par JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Toast Message -->
+    <div id="toast" class="fixed bottom-10 right-10 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-xl z-[100] opacity-0 transform translate-y-10 transition-all duration-300">
+        <span id="toast-message">Message</span>
+    </div>
+
+    <!-- Script principal -->
+    <script type="module">
+        // --- CONFIGURATION UTILISATEUR REQUISE ---
+        /**
+         * @IMPORTANT: Modifiez cette URL pour pointer vers le fichier data.json DANS VOTRE DÉPÔT GITHUB.
+         * Allez sur data.json dans GitHub, cliquez sur "Edit", copiez l'URL de votre navigateur.
+         * EXEMPLE: "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json"
+         */
+        const GITHUB_EDIT_URL = "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json";
+        // -----------------------------------------
+
+        // --- VARIABLES GLOBALES ---
+        let allContacts = []; // Cache pour les données
+        
+        const contactsGrid = document.getElementById('contacts-grid');
+        const loadingDiv = document.getElementById('loading-contacts');
+        const emptyDiv = document.getElementById('empty-contacts');
+        const contactCountSpan = document.getElementById('contact-count');
+        const filterSearch = document.getElementById('filter-search');
+        const filterPriority = document.getElementById('filter-priority');
+        const filterStatus = document.getElementById('filter-status');
+
+        // --- GESTION DES DONNÉES (Fetch `data.json`) ---
+
+        /**
+         * Charge les données depuis le fichier data.json.
+         * @param {boolean} forceRefresh - Si true, force le re-téléchargement avec cache-busting.
+         */
+        async function loadContactsData(forceRefresh = false) {
+            updateDbStatus(false, "Chargement...");
+            loadingDiv.classList.remove('hidden');
+            contactsGrid.innerHTML = '';
+            
+            let url = 'data.json';
+            if (forceRefresh) {
+                // Astuce pour forcer le rechargement en ignorant le cache
+                url += `?t=${new Date().getTime()}`;
+                showToast("Rafraîchissement des données...", "info");
+            }
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Trier les données une seule fois au chargement
+                allContacts = data.sort((a, b) => {
+                    const priorityA = a.priority === 0 ? 99 : a.priority;
+                    const priorityB = b.priority === 0 ? 99 : b.priority;
+                    
+                    if (priorityA !== priorityB) {
+                        return priorityA - priorityB;
+                    }
+                    return a.name.localeCompare(b.name);
+                });
+
+                updateDashboardStats(); // Mettre à jour le mini-dashboard
+                renderContacts(); // Afficher les cartes
+                updateDbStatus(true, "Données chargées");
+                if (forceRefresh) {
+                    showToast("Données rafraîchies avec succès.", "success");
+                }
+
+            } catch (error) {
+                console.error("Erreur lors du chargement de data.json:", error);
+                showToast("Erreur de chargement des données.", "error");
+                updateDbStatus(false, "Erreur données");
+                loadingDiv.classList.add('hidden');
+                emptyDiv.classList.remove('hidden');
+                emptyDiv.querySelector('p').textContent = "Impossible de charger le fichier data.json.";
+            }
+        }
+        
+        /**
+         * Met à jour le mini-dashboard sur la page de contacts.
+         */
+        function updateDashboardStats() {
+            if (allContacts.length === 0) return;
+            
+            const p1Count = allContacts.filter(c => c.priority === 1).length;
+            const p2Count = allContacts.filter(c => c.priority === 2).length;
+            const todoCount = allContacts.filter(c => c.statut === 'À Contacter' && c.statut !== 'Archivé').length;
+            const ongoingCount = allContacts.filter(c => c.statut === 'En Cours' && c.statut !== 'Archivé').length;
+
+            document.getElementById('stat-p1').textContent = p1Count;
+            document.getElementById('stat-p2').textContent = p2Count;
+            document.getElementById('stat-todo').textContent = todoCount;
+            document.getElementById('stat-ongoing').textContent = ongoingCount;
+        }
+
+        /**
+         * Affiche les contacts dans la grille, en appliquant les filtres.
+         */
+        function renderContacts() {
+            contactsGrid.innerHTML = ''; // Vider la grille
+            
+            const searchTerm = filterSearch.value.toLowerCase();
+            const priorityFilter = filterPriority.value;
+            const statusFilter = filterStatus.value;
+
+            const filteredContacts = allContacts.filter(contact => {
+                const matchesPriority = (priorityFilter === 'all') || (String(contact.priority) === priorityFilter);
+                const matchesStatus = (statusFilter === 'all') || (contact.statut === statusFilter);
+                
+                const matchesSearch = !searchTerm ||
+                    contact.name.toLowerCase().includes(searchTerm) ||
+                    (contact.position && contact.position.toLowerCase().includes(searchTerm)) ||
+                    (contact.entity && contact.entity.toLowerCase().includes(searchTerm)) ||
+                    (contact.interest && contact.interest.toLowerCase().includes(searchTerm)) ||
+                    (contact.notes && contact.notes.toLowerCase().includes(searchTerm));
+                    
+                return matchesPriority && matchesStatus && matchesSearch;
+            });
+            
+            contactCountSpan.textContent = filteredContacts.length;
+
+            if (filteredContacts.length === 0) {
+                loadingDiv.classList.add('hidden');
+                emptyDiv.classList.remove('hidden');
+                emptyDiv.querySelector('p').textContent = allContacts.length > 0 ? "Aucun contact ne correspond à vos filtres." : "Aucun contact trouvé.";
+                return;
+            }
+
+            loadingDiv.classList.add('hidden');
+            emptyDiv.classList.add('hidden');
+
+            filteredContacts.forEach(contact => {
+                contactsGrid.appendChild(createContactCard(contact));
+            });
+            
+            // Ré-appliquer Lucide après injection de nouvelles icônes
+            lucide.createIcons();
+        }
+        
+        /**
+         * Crée un élément DOM pour une carte de contact.
+         */
+        function createContactCard(contact) {
+            const card = document.createElement('div');
+            const isArchived = contact.statut === 'Archivé';
+            card.className = `bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-all ${isArchived ? 'archived' : 'hover:-translate-y-1 stat-card'}`;
+
+            // --- Couleurs de Priorité ---
+            const priorityColors = {
+                1: { text: "Niveau 1", bg: "bg-red-100", textClr: "text-red-800", border: "border-red-400" },
+                2: { text: "Niveau 2", bg: "bg-yellow-100", textClr: "text-yellow-800", border: "border-yellow-400" },
+                3: { text: "Niveau 3", bg: "bg-blue-100", textClr: "text-blue-800", border: "border-blue-400" },
+                0: { text: "Non défini", bg: "bg-gray-100", textClr: "text-gray-600", border: "border-gray-300" }
+            };
+            const priorityInfo = priorityColors[contact.priority || 0];
+            
+            // --- Couleurs de Statut ---
+            const statusColors = {
+                "À Contacter": { text: "À Contacter", bg: "bg-blue-100", textClr: "text-blue-800" },
+                "En Cours": { text: "En Cours", bg: "bg-orange-100", textClr: "text-orange-800" },
+                "Suivi": { text: "Suivi", bg: "bg-green-100", textClr: "text-green-800" },
+                "Archivé": { text: "Archivé", bg: "bg-gray-200", textClr: "text-gray-700" },
+            };
+            const statusInfo = statusColors[contact.statut || "À Contacter"];
+
+            const lastInteractionDate = contact.last_interaction ? 
+                `Inter.: ${new Date(contact.last_interaction + 'T00:00:00').toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}` : '';
+            
+            const nextActionDate = contact.next_action_date ? 
+                `Prochaine: ${new Date(contact.next_action_date + 'T00:00:00').toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}` : '<i>Pas de date</i>';
+
+            card.innerHTML = `
+                <!-- Header de la carte avec priorité -->
+                <div class="p-5 border-l-8 ${priorityInfo.border}">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-bold uppercase px-3 py-1 rounded-full ${priorityInfo.bg} ${priorityInfo.textClr}">${priorityInfo.text}</span>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full ${statusInfo.bg} ${statusInfo.textClr}">${statusInfo.text}</span>
+                        </div>
+                         <!-- Lien pour modifier sur GitHub (utilise la variable) -->
+                         <a href="${GITHUB_EDIT_URL}" target="_blank" title="Modifier le fichier data.json sur GitHub" class="text-gray-400 hover:text-schneider-green p-1 rounded-full flex-shrink-0">
+                            <i data-lucide="edit-3" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">${contact.name}</h3>
+                    <p class="text-sm text-schneider-green font-medium">${contact.position || '<i>Poste non défini</i>'}</p>
+                    <p class="text-xs text-gray-500 mt-1">${contact.entity || '<i>Entité non définie</i>'}</p>
+                </div>
+                
+                <!-- Contenu de la carte -->
+                <div class="p-5 space-y-4 flex-grow">
+                    <div>
+                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center"><i data-lucide="brain-circuit" class="w-4 h-4 mr-2 text-gray-400"></i>Intérêt CVA</h4>
+                        <p class="text-sm text-gray-700 whitespace-pre-wrap">${contact.interest || '<i>Non défini</i>'}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center"><i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-gray-400"></i>Plan d'action & Notes</h4>
+                        <p class="text-sm text-gray-700 whitespace-pre-wrap">${contact.notes || '<i>Aucune action définie</i>'}</p>
+                    </div>
+                </div>
+                
+                <!-- Footer de la carte -->
+                <div class="bg-gray-50 p-4 border-t flex justify-between text-xs font-medium">
+                    <span class="text-gray-500" title="Dernière interaction">${lastInteractionDate}</span>
+                    <span class="${contact.next_action_date ? 'text-blue-700 font-bold' : 'text-gray-500'}" title="Prochaine action">${nextActionDate}</span>
+                </div>
+            `;
+            return card;
+        }
+
+        // --- GESTION DE L'UI (Navigation, Filtres) ---
+
+        window.showPage = function(pageId) {
+            // Cacher toutes les pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            // Afficher la page sélectionnée
+            document.getElementById(`page-${pageId}`).style.display = 'block';
+            
+            // Gérer le style du bouton de navigation
+            document.querySelectorAll('.nav-button').forEach(btn => {
+                btn.classList.remove('bg-gray-700', 'text-white');
+                btn.classList.add('text-gray-300');
+            });
+            document.getElementById(`nav-${pageId}`).classList.add('bg-gray-700', 'text-white');
+            document.getElementById(`nav-${pageId}`).classList.remove('text-gray-300');
+        }
+
+        function updateDbStatus(connected, text) {
+            const light = document.getElementById('db-status-light');
+            const statusText = document.getElementById('db-status-text');
+            
+            light.className = `w-3 h-3 rounded-full shrink-0 ${connected ? 'bg-green-500' : 'bg-red-500'}`;
+            statusText.textContent = text;
+        }
+
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        let toastTimeout;
+
+        function showToast(message, type = "info") {
+            if (toastTimeout) clearTimeout(toastTimeout);
+            
+            toastMessage.textContent = message;
+            
+            // Réinitialiser les classes
+            toast.classList.remove('bg-green-600', 'bg-red-600', 'bg-blue-600', 'bg-gray-900', 'opacity-0', 'translate-y-10');
+            
+            if (type === 'success') {
+                toast.classList.add('bg-green-600');
+            } else if (type === 'error') {
+                toast.classList.add('bg-red-600');
+            } else if (type === 'info') {
+                toast.classList.add('bg-blue-600');
+            } else {
+                toast.classList.add('bg-gray-900');
+            }
+            
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10');
+            }, 3000);
+        }
+
+        // --- ÉVÉNEMENTS INITIAUX ---
+        
+        // Attacher les écouteurs de filtre
+        function debounce(fn, delay = 300) {
+            let timeoutId;
+            return (...args) => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => fn.apply(null, args), delay);
+            };
+        }
+        
+        filterSearch.addEventListener('input', debounce(() => renderContacts(), 300));
+        filterPriority.addEventListener('change', () => renderContacts());
+        filterStatus.addEventListener('change', () => renderContacts());
+
+        // Initialisation de l'application
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            showPage('overview'); // Afficher la page d'accueil par défaut
+            loadContactsData(); // Charger les données au démarrage
+            
+            if (GITHUB_EDIT_URL === "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json") {
+                console.warn("N'oubliez pas de configurer GITHUB_EDIT_URL dans index.html !");
+                showToast("Pensez à configurer le lien d'édition.", "info");
+            }
+        });
+
+        // Rendre les fonctions accessibles globalement
+        window.showPage = showPage;
+        window.loadContactsData = loadContactsData;
+
+    </script>
+</body>
+</html>
+
+
+
