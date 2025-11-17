@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAP Schneider Electric - CVA (v6)</title>
+    <title>KAP Schneider Electric - CVA (v7)</title>
     <!-- Chargement de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes Lucide -->
@@ -23,9 +23,7 @@
                     },
                 },
             },
-            plugins: [
-                require('@tailwindcss/typography'),
-            ],
+            // Note: Le plugin typography n'est PLUS utilisé
         }
     </script>
     <!-- Style personnalisé -->
@@ -73,23 +71,13 @@
             color: #111827;
         }
         
-        /* --- NOUVEAU: Styles pour le Schéma d'Organisation --- */
-        .schema-diagram {
-            position: relative;
-        }
-        .schema-level {
-            display: grid;
-            position: relative;
-        }
+        /* --- Styles pour le Schéma d'Organisation --- */
+        .schema-diagram { position: relative; }
+        .schema-level { display: grid; position: relative; }
         .schema-node {
-            position: relative;
-            background-color: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.375rem;
-            padding: 0.75rem 1rem;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            text-align: center;
-            z-index: 1;
+            position: relative; background-color: white; border: 1px solid #e5e7eb;
+            border-radius: 0.375rem; padding: 0.75rem 1rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); text-align: center; z-index: 1;
         }
         .schema-node-segment { background-color: #f3f4f6; border-color: #d1d5db; font-weight: 600; }
         .schema-node-market { background-color: #eff6ff; border-color: #93c5fd; }
@@ -97,8 +85,7 @@
         .schema-node-transverse { background-color: #fefce8; border-color: #fde047; font-size: 0.875rem; }
         .schema-node-geo { background-color: #f8f8f8; font-size: 0.875rem; }
 
-        /* Lignes de connexion (la partie "design") */
-        /* Ligne 1 -> 2 (Groupe vers Segments) */
+        /* Lignes de connexion CSS */
         .level-1 { grid-template-columns: 1fr; }
         .level-2 { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
         .level-1 .schema-node::after {
@@ -113,8 +100,6 @@
             content: ''; position: absolute; left: 25%; right: 25%; top: -1.25rem;
             height: 1px; background-color: #d1d5db; z-index: 0;
         }
-
-        /* Lignes 2 -> 3 (Segments vers End-Markets) */
         .level-3 { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 2.5rem; }
         .level-3 .schema-node::before {
             content: ''; position: absolute; left: 50%; bottom: 100%;
@@ -124,7 +109,6 @@
             content: ''; position: absolute; left: 12.5%; right: 12.5%; top: -1.25rem;
             height: 1px; background-color: #d1d5db; z-index: 0;
         }
-        /* Lignes verticales descendantes des segments */
         .level-2 .schema-node:first-child::after {
             content: ''; position: absolute; left: 50%; top: 100%;
             height: 1.25rem; width: 1px; background-color: #d1d5db;
@@ -133,8 +117,6 @@
             content: ''; position: absolute; left: 50%; top: 100%;
             height: 1.25rem; width: 1px; background-color: #d1d5db;
         }
-        
-        /* Lignes 3 -> 4 (End-Markets vers Offres) */
         .level-4 { grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
         .level-4 .schema-node::before {
             content: ''; position: absolute; left: 50%; bottom: 100%;
@@ -147,6 +129,56 @@
         .level-3::after {
             content: ''; position: absolute; left: 50%; right: 50%; top: 100%;
             height: 1.25rem; width: 1px; background-color: #d1d5db; z-index: 0;
+        }
+        
+        /* --- NOUVEAU: Style "Léché" pour le contenu Architecture --- */
+        .content-box h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            color: #2b2b2b; /* schneider-dark */
+            border-bottom: 2px solid #009e4d; /* schneider-green */
+            padding-bottom: 0.5rem; /* 8px */
+            margin-top: 2rem; /* 32px */
+            margin-bottom: 1rem; /* 16px */
+        }
+        .content-box h2:first-child {
+            margin-top: 0;
+        }
+        .content-box h3 {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 600;
+            color: #009e4d; /* schneider-green */
+            margin-top: 1.5rem; /* 24px */
+            margin-bottom: 0.75rem; /* 12px */
+        }
+        .content-box p {
+            line-height: 1.7;
+            color: #374151; /* gray-700 */
+            margin-bottom: 1rem;
+        }
+        .content-box ul, .content-box ol {
+            margin-left: 1.25rem; /* 20px */
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+        .content-box ul { list-style-type: disc; }
+        .content-box ol { list-style-type: decimal; }
+        .content-box li {
+             padding-left: 0.5rem; /* 8px */
+             margin-bottom: 0.5rem; /* 8px */
+             color: #374151; /* gray-700 */
+        }
+        .content-box blockquote {
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            border-left: 4px solid #009e4d; /* schneider-green */
+            background-color: #f9fafb; /* gray-50 */
+            padding: 1rem 1.5rem;
+            font-style: italic;
+            color: #4d4d4d; /* schneider-gray */
+        }
+        .content-box blockquote p {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -163,14 +195,13 @@
             </div>
             
             <ul class="flex flex-col items-center lg:items-start w-full space-y-3">
-                <!-- Bouton Vue d'ensemble -->
+                <!-- NOUVEAU: Contraste corrigé. 'active' = bg-schneider-green -->
                 <li class="w-full">
-                    <button onclick="showPage('overview')" id="nav-overview" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-white bg-gray-700 transition-colors">
+                    <button onclick="showPage('overview')" id="nav-overview" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-white bg-schneider-green transition-colors">
                         <i data-lucide="layout-dashboard" class="w-6 h-6 shrink-0"></i>
                         <span class="hidden lg:block ml-4">Architecture</span>
                     </button>
                 </li>
-                <!-- Bouton Contacts -->
                 <li class="w-full">
                     <button onclick="showPage('contacts')" id="nav-contacts" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i data-lucide="users" class="w-6 h-6 shrink-0"></i>
@@ -202,7 +233,7 @@
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">Architecture Globale de Schneider Electric</h1>
                 <p class="text-lg text-gray-600 mb-8">Comprendre comment Schneider se structure pour servir ses clients.</p>
 
-                <!-- NOUVEAU: Schéma de l'organisation (Visuel CSS) -->
+                <!-- Schéma de l'organisation (Visuel CSS) -->
                 <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Schéma d'Organisation Agrégé (KAP CVA)</h2>
                     
@@ -257,51 +288,49 @@
                     </div>
                 </div>
 
-                <!-- Contenu Détaillé (Format Article) -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <article class="prose max-w-none prose-h2:text-schneider-gray prose-h3:text-schneider-green prose-h3:font-semibold">
-                        <h2>1. Deux Segments de Reporting Business</h2>
-                        <p>D'après les comptes 2024, Schneider est organisé en deux segments financiers :</p>
-                        <ul>
-                            <li><strong>Energy Management (EM)</strong>: Regroupe l'essentiel des activités de gestion de l'énergie (distribution, contrôle). C'est <strong>~82% des revenus</strong> (31,1 Md€).</li>
-                            <li><strong>Industrial Automation (IA)</strong>: Couvre l'automatisation et le contrôle des procédés (DCS, SCADA, logiciels industriels). Représente <strong>~18% des revenus</strong> (7,0 Md€).</li>
-                        </ul>
-                        <blockquote>Message clef : L'énergie et l'automatisation sont deux businesses distincts, mais systématiquement combinés dans les offres clients.</blockquote>
+                <!-- NOUVEAU: Contenu Détaillé (Design "Léché") -->
+                <div class="content-box">
+                    <h2>1. Deux Segments de Reporting Business</h2>
+                    <p>D'après les comptes 2024, Schneider est organisé en deux segments financiers :</p>
+                    <ul>
+                        <li><strong>Energy Management (EM)</strong>: Regroupe l'essentiel des activités de gestion de l'énergie (distribution, contrôle). C'est <strong>~82% des revenus</strong> (31,1 Md€).</li>
+                        <li><strong>Industrial Automation (IA)</strong>: Couvre l'automatisation et le contrôle des procédés (DCS, SCADA, logiciels industriels). Représente <strong>~18% des revenus</strong> (7,0 Md€).</li>
+                    </ul>
+                    <blockquote><p>Message clef : L'énergie et l'automatisation sont deux businesses distincts, mais systématiquement combinés dans les offres clients.</p></blockquote>
 
-                        <h2>2. Go-to-Market : 4 Marchés Finaux</h2>
-                        <p>Schneider vend son portefeuille intégré dans quatre "end-markets" :</p>
-                        <ol>
-                            <li><strong>Buildings</strong>: Bâtiments non résidentiels (tertiaire, santé) et résidentiels. Traction tirée par la numérisation (BMS) et l'efficacité énergétique.</li>
-                            <li><strong>Data Center & Networks</strong>: Hyperscale, colocation, edge. Moteur central de la croissance, notamment en Amérique du Nord.</li>
-                            <li><strong>Infrastructure</strong>: Utilities électriques, eau, transports. Demande portée par la modernisation des réseaux, les ENR et les besoins de résilience.</li>
-                            <li><strong>Industry</strong>: Process & Hybride (Énergie, Chimie, Mines) et automation discrète (OEM).</li>
-                        </ol>
+                    <h2>2. Go-to-Market : 4 Marchés Finaux</h2>
+                    <p>Schneider vend son portefeuille intégré dans quatre "end-markets" :</p>
+                    <ol>
+                        <li><strong>Buildings</strong>: Bâtiments non résidentiels (tertiaire, santé) et résidentiels. Traction tirée par la numérisation (BMS) et l'efficacité énergétique.</li>
+                        <li><strong>Data Center & Networks</strong>: Hyperscale, colocation, edge. Moteur central de la croissance, notamment en Amérique du Nord.</li>
+                        <li><strong>Infrastructure</strong>: Utilities électriques, eau, transports. Demande portée par la modernisation des réseaux, les ENR et les besoins de résilience.</li>
+                        <li><strong>Industry</strong>: Process & Hybride (Énergie, Chimie, Mines) et automation discrète (OEM).</li>
+                    </ol>
 
-                        <h2>3. Trois Familles d'Offres (Ventilation Q3 2025)</h2>
-                        <p>Le revenu Groupe est décomposé en trois catégories :</p>
-                        <ul>
-                            <li><strong>Products (48%)</strong>: Produits standards (appareillage BT/MT, composants).</li>
-                            <li><strong>Systems (34%)</strong>: Offres systèmes combinant équipements, engineering et software (projets DC, réseaux, usines).</li>
-                            <li><strong>Software & Services (18%)</strong>: Inclut "agnostic software" (AVEVA, ETAP) et les services (EcoStruxure, Field Services).</li>
-                        </ul>
-                        <blockquote>Message clef : Les "Systems" et "Software & Services" sont un bloc majeur (52% combinés) sur lequel CVA peut se brancher.</blockquote>
+                    <h2>3. Trois Familles d'Offres (Ventilation Q3 2025)</h2>
+                    <p>Le revenu Groupe est décomposé en trois catégories :</p>
+                    <ul>
+                        <li><strong>Products (48%)</strong>: Produits standards (appareillage BT/MT, composants).</li>
+                        <li><strong>Systems (34%)</strong>: Offres systèmes combinant équipements, engineering et software (projets DC, réseaux, usines).</li>
+                        <li><strong>Software & Services (18%)</strong>: Inclut "agnostic software" (AVEVA, ETAP) et les services (EcoStruxure, Field Services).</li>
+                    </ul>
+                    <blockquote><p>Message clef : Les "Systems" et "Software & Services" sont un bloc majeur (52% combinés) sur lequel CVA peut se brancher.</p></blockquote>
 
-                        <h2>4. Déclinaison Interne pour CVA</h2>
-                        <p>Cette structure se traduit en divisions opérationnelles clés pour notre KAP :</p>
-                        <h3>Divisions Energy Management (EM)</h3>
-                        <ul>
-                            <li><strong>Power Systems</strong>: Moyenne tension, smart grid. Cible pour les sujets utilities, réseaux.</li>
-                            <li><strong>Secure Power</strong>: Alimentation sécurisée, refroidissement. Cœur de l'offre Data Center.</li>
-                            <li><strong>Digital Energy</strong>: Solutions digitales (BMS, power management, EcoStruxure).</li>
-                            <li>(Home & Distribution / Power Products): Appareillage BT, résidentiel.</li>
-                        </ul>
-                        <h3>Couches Transverses Critiques</h3>
-                        <ol>
-                            <li><strong>SE Advisory Services</strong>: La marque de conseil globale de Schneider. Cadre naturel pour des missions conjointes.</li>
-                            <li><strong>Agnostic Software</strong>: Le bloc AVEVA, ETAP, RIB. Irrigue tous les marchés (digital twins, simulation).</li>
-                            <li><strong>Durabilité & SRI</strong>: Porté par la CSO au Comex et le Sustainability Research Institute (SRI).</li>
-                        </ol>
-                    </article>
+                    <h2>4. Déclinaison Interne pour CVA</h2>
+                    <p>Cette structure se traduit en divisions opérationnelles clés pour notre KAP :</p>
+                    <h3>Divisions Energy Management (EM)</h3>
+                    <ul>
+                        <li><strong>Power Systems</strong>: Moyenne tension, smart grid. Cible pour les sujets utilities, réseaux.</li>
+                        <li><strong>Secure Power</strong>: Alimentation sécurisée, refroidissement. Cœur de l'offre Data Center.</li>
+                        <li><strong>Digital Energy</strong>: Solutions digitales (BMS, power management, EcoStruxure).</li>
+                        <li>(Home & Distribution / Power Products): Appareillage BT, résidentiel.</li>
+                    </ul>
+                    <h3>Couches Transverses Critiques</h3>
+                    <ol>
+                        <li><strong>SE Advisory Services</strong>: La marque de conseil globale de Schneider. Cadre naturel pour des missions conjointes.</li>
+                        <li><strong>Agnostic Software</strong>: Le bloc AVEVA, ETAP, RIB. Irrigue tous les marchés (digital twins, simulation).</li>
+                        <li><strong>Durabilité & SRI</strong>: Porté par la CSO au Comex et le Sustainability Research Institute (SRI).</li>
+                    </ol>
                 </div>
             </div>
 
@@ -313,14 +342,14 @@
                         <h1 class="text-3xl font-bold text-gray-800">Contacts KAP Schneider</h1>
                         <p class="text-lg text-gray-600">Tableau de bord par "Bloc" organisationnel.</p>
                     </div>
-                    <!-- Bouton de rafraîchissement des données -->
+                    <!-- Bouton de rafraîchissement des données (Contraste OK) -->
                     <button onclick="loadContactsData(true)" class="mt-4 md:mt-0 bg-schneider-green hover:bg-green-700 text-white font-bold py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-5 h-5 mr-2"></i>
                         Rafraîchir les données
                     </button>
                 </div>
 
-                <!-- NOUVEAU: Navigation par Onglets (Blocs) -->
+                <!-- Navigation par Onglets (Blocs) -->
                 <div class="border-b border-gray-200 bg-white shadow-sm rounded-t-lg">
                     <nav class="-mb-px flex flex-wrap" aria-label="Tabs">
                         <button onclick="filterByBloc('all')" class="tab-button active flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-all">
@@ -647,13 +676,13 @@
             // Afficher la page sélectionnée
             document.getElementById(`page-${pageId}`).style.display = 'block';
             
-            // Gérer le style du bouton de navigation
+            // Gérer le style du bouton de navigation (CORRECTION CONTRASTE)
             document.querySelectorAll('.nav-button').forEach(btn => {
-                btn.classList.remove('bg-gray-700', 'text-white');
-                btn.classList.add('text-gray-300');
+                btn.classList.remove('bg-schneider-green', 'text-white');
+                btn.classList.add('text-gray-300', 'hover:bg-gray-700');
             });
-            document.getElementById(`nav-${pageId}`).classList.add('bg-gray-700', 'text-white');
-            document.getElementById(`nav-${pageId}`).classList.remove('text-gray-300');
+            document.getElementById(`nav-${pageId}`).classList.add('bg-schneider-green', 'text-white');
+            document.getElementById(`nav-${pageId}`).classList.remove('text-gray-300', 'hover:bg-gray-700');
         }
 
         function updateDbStatus(connected, text) {
