@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAP Schneider Electric - CVA (v4)</title>
+    <title>KAP Schneider Electric - CVA (v6)</title>
     <!-- Chargement de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes Lucide -->
@@ -19,9 +19,13 @@
                     colors: {
                         'schneider-green': '#009e4d',
                         'schneider-gray': '#4d4d4d',
-                    }
+                        'schneider-dark': '#2b2b2b',
+                    },
                 },
             },
+            plugins: [
+                require('@tailwindcss/typography'),
+            ],
         }
     </script>
     <!-- Style personnalisé -->
@@ -33,52 +37,137 @@
             -moz-osx-font-smoothing: grayscale;
         }
         /* Style pour les scrollbars */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        /* Animation de survol sur les cartes stats */
-        .stat-card {
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        /* Classe pour les cartes archivées */
+        .archived { opacity: 0.6; filter: grayscale(80%); }
+        .archived:hover { opacity: 1; filter: grayscale(0); }
+
+        /* Effet de "lift" amélioré pour les cartes */
+        .stat-card, .contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .stat-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        /* Classe pour les cartes archivées */
-        .archived {
-            opacity: 0.6;
-            filter: grayscale(80%);
-            transition: all 0.2s ease;
+        .contact-card:not(.archived):hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
-        .archived:hover {
-            opacity: 1;
-            filter: grayscale(0);
+
+        /* Styles pour les onglets de navigation */
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+            border-bottom-width: 3px;
+            border-color: transparent;
+        }
+        .tab-button.active {
+            border-color: #009e4d;
+            color: #009e4d;
+            font-weight: 600;
+        }
+        .tab-button:not(.active):hover {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+        
+        /* --- NOUVEAU: Styles pour le Schéma d'Organisation --- */
+        .schema-diagram {
+            position: relative;
+        }
+        .schema-level {
+            display: grid;
+            position: relative;
+        }
+        .schema-node {
+            position: relative;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            padding: 0.75rem 1rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            text-align: center;
+            z-index: 1;
+        }
+        .schema-node-segment { background-color: #f3f4f6; border-color: #d1d5db; font-weight: 600; }
+        .schema-node-market { background-color: #eff6ff; border-color: #93c5fd; }
+        .schema-node-offer { background-color: #fdf2f8; border-color: #fbcfe8; }
+        .schema-node-transverse { background-color: #fefce8; border-color: #fde047; font-size: 0.875rem; }
+        .schema-node-geo { background-color: #f8f8f8; font-size: 0.875rem; }
+
+        /* Lignes de connexion (la partie "design") */
+        /* Ligne 1 -> 2 (Groupe vers Segments) */
+        .level-1 { grid-template-columns: 1fr; }
+        .level-2 { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+        .level-1 .schema-node::after {
+            content: ''; position: absolute; left: 50%; top: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        .level-2 .schema-node::before {
+            content: ''; position: absolute; left: 50%; bottom: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        .level-2::before {
+            content: ''; position: absolute; left: 25%; right: 25%; top: -1.25rem;
+            height: 1px; background-color: #d1d5db; z-index: 0;
+        }
+
+        /* Lignes 2 -> 3 (Segments vers End-Markets) */
+        .level-3 { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 2.5rem; }
+        .level-3 .schema-node::before {
+            content: ''; position: absolute; left: 50%; bottom: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        .level-3::before {
+            content: ''; position: absolute; left: 12.5%; right: 12.5%; top: -1.25rem;
+            height: 1px; background-color: #d1d5db; z-index: 0;
+        }
+        /* Lignes verticales descendantes des segments */
+        .level-2 .schema-node:first-child::after {
+            content: ''; position: absolute; left: 50%; top: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        .level-2 .schema-node:last-child::after {
+            content: ''; position: absolute; left: 50%; top: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        
+        /* Lignes 3 -> 4 (End-Markets vers Offres) */
+        .level-4 { grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+        .level-4 .schema-node::before {
+            content: ''; position: absolute; left: 50%; bottom: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db;
+        }
+        .level-4::before {
+            content: ''; position: absolute; left: 16.6%; right: 16.6%; top: -1.25rem;
+            height: 1px; background-color: #d1d5db; z-index: 0;
+        }
+        .level-3::after {
+            content: ''; position: absolute; left: 50%; right: 50%; top: 100%;
+            height: 1.25rem; width: 1px; background-color: #d1d5db; z-index: 0;
         }
     </style>
 </head>
 <body class="h-full overflow-hidden">
     <div class="flex h-screen bg-white">
         <!-- Barre latérale -->
-        <nav class="w-20 lg:w-64 bg-gray-900 text-white p-4 flex flex-col shrink-0">
-            <div class="flex items-center justify-center lg:justify-start w-full mb-10 h-10">
+        <nav class="w-20 lg:w-64 bg-schneider-dark text-white p-4 flex flex-col shrink-0">
+            <div class="flex items-center justify-center lg:justify-start w-full mb-10 h-12">
                 <!-- Logo/Titre -->
-                <div class="w-10 h-10 bg-schneider-green rounded-full flex items-center justify-center shrink-0">
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div class="w-12 h-12 bg-schneider-green rounded-lg flex items-center justify-center shrink-0">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="w-7 h-7 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-                <span class="hidden lg:block text-xl font-bold ml-3">KAP Schneider</span>
+                <span class="hidden lg:block text-2xl font-bold ml-3">KAP Schneider</span>
             </div>
             
             <ul class="flex flex-col items-center lg:items-start w-full space-y-3">
                 <!-- Bouton Vue d'ensemble -->
                 <li class="w-full">
                     <button onclick="showPage('overview')" id="nav-overview" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-white bg-gray-700 transition-colors">
-                        <i data-lucide="layout-grid" class="w-6 h-6 shrink-0"></i>
-                        <span class="hidden lg:block ml-4">Vue d'ensemble</span>
+                        <i data-lucide="layout-dashboard" class="w-6 h-6 shrink-0"></i>
+                        <span class="hidden lg:block ml-4">Architecture</span>
                     </button>
                 </li>
                 <!-- Bouton Contacts -->
@@ -107,91 +196,122 @@
         <!-- Contenu principal -->
         <main class="flex-1 bg-gray-100 text-gray-900 overflow-y-auto">
             
-            <!-- Page 1: Vue d'ensemble (Slides 1 & 2) -->
+            <!-- Page 1: Vue d'ensemble (Refonte totale) -->
             <div id="page-overview" class="page-content p-8 lg:p-12">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard KAP Schneider Electric</h1>
-                <p class="text-lg text-gray-600 mb-8">Positionnement CVA Energy et structure de l'organisation.</p>
+                
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Architecture Globale de Schneider Electric</h1>
+                <p class="text-lg text-gray-600 mb-8">Comprendre comment Schneider se structure pour servir ses clients.</p>
 
-                <!-- Section 1: Dashboard Stats (Slide 1) -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                    <!-- Segments -->
-                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-schneider-green">
-                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="pie-chart" class="w-6 h-6 mr-3 text-schneider-green"></i>2 Segments Business</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="font-bold">Energy Management</h3>
-                                <p class="text-sm text-gray-600">~31.1 Md€. Priorité CVA (Réseaux, DC, Bâtiments).</p>
+                <!-- NOUVEAU: Schéma de l'organisation (Visuel CSS) -->
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Schéma d'Organisation Agrégé (KAP CVA)</h2>
+                    
+                    <div class="flex">
+                        <!-- Bandeau Latéral : Géographies -->
+                        <div class="flex flex-col justify-center space-y-2 pr-4 mr-4 border-r-2 border-gray-200">
+                            <h3 class="text-xs font-bold text-gray-500 uppercase text-center mb-2">Régions</h3>
+                            <div class="schema-node schema-node-geo py-2">North America</div>
+                            <div class="schema-node schema-node-geo py-2">Western Europe</div>
+                            <div class="schema-node schema-node-geo py-2">Asia Pacific</div>
+                            <div class="schema-node schema-node-geo py-2">Rest of the World</div>
+                        </div>
+
+                        <!-- Cœur du schéma -->
+                        <div class="flex-1 schema-diagram">
+                            <!-- Niveau 1: Groupe -->
+                            <div class="schema-level level-1">
+                                <div class="schema-node schema-node-segment w-1/2 mx-auto">Schneider Electric Group</div>
                             </div>
-                            <div>
-                                <h3 class="font-bold">Industrial Automation</h3>
-                                <p class="text-sm text-gray-600">~7.0 Md€. Efficacité énergétique, digitalisation.</p>
+                            
+                            <!-- Niveau 2: Segments -->
+                            <div class="schema-level level-2">
+                                <div class="schema-node schema-node-segment">Energy Management (82%)</div>
+                                <div class="schema-node schema-node-segment">Industrial Automation (18%)</div>
+                            </div>
+
+                            <!-- Niveau 3: End-Markets -->
+                            <div class="schema-level level-3">
+                                <div class="schema-node schema-node-market">Buildings</div>
+                                <div class="schema-node schema-node-market">Data Center & Networks</div>
+                                <div class="schema-node schema-node-market">Infrastructure</div>
+                                <div class="schema-node schema-node-market">Industry</div>
+                            </div>
+
+                            <!-- Niveau 4: Offres -->
+                            <div class="schema-level level-4">
+                                <div class="schema-node schema-node-offer">Products (48%)</div>
+                                <div class="schema-node schema-node-offer">Systems (34%)</div>
+                                <div class="schema-node schema-node-offer">Software & Services (18%)</div>
                             </div>
                         </div>
                     </div>
-                    <!-- Marchés Finaux -->
-                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-blue-500">
-                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="target" class="w-6 h-6 mr-3 text-blue-500"></i>4 Marchés Finaux</h2>
-                        <ul class="list-disc list-inside space-y-2 text-sm text-gray-600">
-                            <li><span class="font-bold">Buildings</span> (Efficacité, Décarbonation)</li>
-                            <li><span class="font-bold">Data Center & Networks</span> (Croissance +++)</li>
-                            <li><span class="font-bold">Infrastructure</span> (Réseaux, Utilities)</li>
-                            <li><span class="font-bold">Industry</span> (Process, Hybride)</li>
-                        </ul>
-                    </div>
-                    <!-- Familles d'Offres -->
-                    <div class="stat-card bg-white p-6 rounded-lg shadow-md border-b-4 border-purple-500">
-                        <h2 class="text-xl font-semibold text-gray-700 mb-3 flex items-center"><i data-lucide="package" class="w-6 h-6 mr-3 text-purple-500"></i>3 Familles d'Offres</h2>
-                        <ul class="list-none space-y-2 text-sm text-gray-600">
-                            <li><span class="font-bold">Products (~50 %):</span> Distribution, appareillage.</li>
-                            <li><span class="font-bold">Systems (~31 %):</span> Solutions packagées (Projets).</li>
-                            <li><span class="font-bold">Software & Services (~19 %):</span> Cible CVA.</li>
-                        </ul>
+
+                    <!-- Couches Transverses -->
+                    <div class="mt-6 border-t pt-4">
+                        <h3 class="text-sm font-bold text-gray-500 uppercase text-center mb-2">Couches Transverses</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                            <div class="schema-node schema-node-transverse">SE Advisory Services</div>
+                            <div class="schema-node schema-node-transverse">Agnostic Software (AVEVA, ETAP...)</div>
+                            <div class="schema-node schema-node-transverse">Sustainability & SRI</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Section 2: Structure (Slide 2) -->
-                <h1 class="text-3xl font-bold text-gray-800 mb-4 mt-12">Points d'Entrée Business</h1>
+                <!-- Contenu Détaillé (Format Article) -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-semibold text-gray-700 mb-4">Articulation Structurelle CVA</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Energy Management -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-schneider-green mb-2">Energy Management</h3>
-                            <p class="text-sm text-gray-600 mb-2">5 divisions clés :</p>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li>Power Systems (Réseaux)</li>
-                                <li>Secure Power (Data Centers)</li>
-                                <li>Digital Energy (EcoStruxure)</li>
-                                <li>Power Products (BT)</li>
-                                <li>Home & Distribution</li>
-                            </ul>
-                        </div>
-                        <!-- Industrial Automation -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-blue-500 mb-2">Industrial Automation</h3>
-                            <p class="text-sm text-gray-600">Portefeuille automation, contrôle, software industriel. Porté par G. Avice-Huet.</p>
-                        </div>
-                        <!-- Axes Transverses -->
-                        <div>
-                            <h3 class="text-lg font-semibold text-red-700 mb-2">Cibles CVA Transverses</h3>
-                            <p class="text-sm text-gray-600 mb-2">Points d'ancrage pour CVA :</p>
-                            <ul class="list-disc list-inside text-sm space-y-1">
-                                <li><span class="font-bold">SE Advisory Services</span> (S. Wilhite)</li>
-                                <li><span class="font-bold">Agnostic Software</span> (C. Herzberg)</li>
-                                <li><span class="font-bold">Durabilité & SRI</span> (E. Finidori, T.A. Kwan)</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <article class="prose max-w-none prose-h2:text-schneider-gray prose-h3:text-schneider-green prose-h3:font-semibold">
+                        <h2>1. Deux Segments de Reporting Business</h2>
+                        <p>D'après les comptes 2024, Schneider est organisé en deux segments financiers :</p>
+                        <ul>
+                            <li><strong>Energy Management (EM)</strong>: Regroupe l'essentiel des activités de gestion de l'énergie (distribution, contrôle). C'est <strong>~82% des revenus</strong> (31,1 Md€).</li>
+                            <li><strong>Industrial Automation (IA)</strong>: Couvre l'automatisation et le contrôle des procédés (DCS, SCADA, logiciels industriels). Représente <strong>~18% des revenus</strong> (7,0 Md€).</li>
+                        </ul>
+                        <blockquote>Message clef : L'énergie et l'automatisation sont deux businesses distincts, mais systématiquement combinés dans les offres clients.</blockquote>
+
+                        <h2>2. Go-to-Market : 4 Marchés Finaux</h2>
+                        <p>Schneider vend son portefeuille intégré dans quatre "end-markets" :</p>
+                        <ol>
+                            <li><strong>Buildings</strong>: Bâtiments non résidentiels (tertiaire, santé) et résidentiels. Traction tirée par la numérisation (BMS) et l'efficacité énergétique.</li>
+                            <li><strong>Data Center & Networks</strong>: Hyperscale, colocation, edge. Moteur central de la croissance, notamment en Amérique du Nord.</li>
+                            <li><strong>Infrastructure</strong>: Utilities électriques, eau, transports. Demande portée par la modernisation des réseaux, les ENR et les besoins de résilience.</li>
+                            <li><strong>Industry</strong>: Process & Hybride (Énergie, Chimie, Mines) et automation discrète (OEM).</li>
+                        </ol>
+
+                        <h2>3. Trois Familles d'Offres (Ventilation Q3 2025)</h2>
+                        <p>Le revenu Groupe est décomposé en trois catégories :</p>
+                        <ul>
+                            <li><strong>Products (48%)</strong>: Produits standards (appareillage BT/MT, composants).</li>
+                            <li><strong>Systems (34%)</strong>: Offres systèmes combinant équipements, engineering et software (projets DC, réseaux, usines).</li>
+                            <li><strong>Software & Services (18%)</strong>: Inclut "agnostic software" (AVEVA, ETAP) et les services (EcoStruxure, Field Services).</li>
+                        </ul>
+                        <blockquote>Message clef : Les "Systems" et "Software & Services" sont un bloc majeur (52% combinés) sur lequel CVA peut se brancher.</blockquote>
+
+                        <h2>4. Déclinaison Interne pour CVA</h2>
+                        <p>Cette structure se traduit en divisions opérationnelles clés pour notre KAP :</p>
+                        <h3>Divisions Energy Management (EM)</h3>
+                        <ul>
+                            <li><strong>Power Systems</strong>: Moyenne tension, smart grid. Cible pour les sujets utilities, réseaux.</li>
+                            <li><strong>Secure Power</strong>: Alimentation sécurisée, refroidissement. Cœur de l'offre Data Center.</li>
+                            <li><strong>Digital Energy</strong>: Solutions digitales (BMS, power management, EcoStruxure).</li>
+                            <li>(Home & Distribution / Power Products): Appareillage BT, résidentiel.</li>
+                        </ul>
+                        <h3>Couches Transverses Critiques</h3>
+                        <ol>
+                            <li><strong>SE Advisory Services</strong>: La marque de conseil globale de Schneider. Cadre naturel pour des missions conjointes.</li>
+                            <li><strong>Agnostic Software</strong>: Le bloc AVEVA, ETAP, RIB. Irrigue tous les marchés (digital twins, simulation).</li>
+                            <li><strong>Durabilité & SRI</strong>: Porté par la CSO au Comex et le Sustainability Research Institute (SRI).</li>
+                        </ol>
+                    </article>
                 </div>
             </div>
 
-            <!-- Page 2: Contacts KAP (Slides 3-8) -->
+            <!-- Page 2: Contacts KAP (Refonte avec Onglets) -->
             <div id="page-contacts" class="page-content p-8 lg:p-12" style="display: none;">
                 <!-- Header Page Contacts -->
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-800">Contacts KAP Schneider</h1>
-                        <p class="text-lg text-gray-600">Tableau de bord (Total: <span id="contact-count" class="font-bold">0</span>)</p>
+                        <p class="text-lg text-gray-600">Tableau de bord par "Bloc" organisationnel.</p>
                     </div>
                     <!-- Bouton de rafraîchissement des données -->
                     <button onclick="loadContactsData(true)" class="mt-4 md:mt-0 bg-schneider-green hover:bg-green-700 text-white font-bold py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center">
@@ -200,32 +320,36 @@
                     </button>
                 </div>
 
-                <!-- NOUVEAU: Mini-Dashboard Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div class="stat-card bg-white p-4 rounded-lg shadow">
-                        <h3 class="text-sm font-medium text-gray-500">Priorité 1 (Max)</h3>
-                        <p id="stat-p1" class="text-3xl font-bold text-red-600">0</p>
-                    </div>
-                    <div class="stat-card bg-white p-4 rounded-lg shadow">
-                        <h3 class="text-sm font-medium text-gray-500">Priorité 2 (Haute)</h3>
-                        <p id="stat-p2" class="text-3xl font-bold text-yellow-600">0</p>
-                    </div>
-                    <div class="stat-card bg-white p-4 rounded-lg shadow">
-                        <h3 class="text-sm font-medium text-gray-500">À Contacter</h3>
-                        <p id="stat-todo" class="text-3xl font-bold text-blue-600">0</p>
-                    </div>
-                    <div class="stat-card bg-white p-4 rounded-lg shadow">
-                        <h3 class="text-sm font-medium text-gray-500">En Cours</h3>
-                        <p id="stat-ongoing" class="text-3xl font-bold text-orange-600">0</p>
-                    </div>
+                <!-- NOUVEAU: Navigation par Onglets (Blocs) -->
+                <div class="border-b border-gray-200 bg-white shadow-sm rounded-t-lg">
+                    <nav class="-mb-px flex flex-wrap" aria-label="Tabs">
+                        <button onclick="filterByBloc('all')" class="tab-button active flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-all">
+                            <i data-lucide="layout-grid" class="w-4 h-4 mr-2"></i> Tous (<span id="count-all">0</span>)
+                        </button>
+                        <button onclick="filterByBloc('corporate')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-corporate">
+                            <i data-lucide="briefcase" class="w-4 h-4 mr-2"></i> 1. Corporate (<span id="count-corporate">0</span>)
+                        </button>
+                        <button onclick="filterByBloc('em_digital')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-em_digital">
+                            <i data-lucide="building" class="w-4 h-4 mr-2"></i> 2. EM & Digital (<span id="count-em_digital">0</span>)
+                        </button>
+                        <button onclick="filterByBloc('data_center')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-data_center">
+                            <i data-lucide="server" class="w-4 h-4 mr-2"></i> 3. Data Center (<span id="count-data_center">0</span>)
+                        </button>
+                        <button onclick="filterByBloc('industry')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-industry">
+                            <i data-lucide="factory" class="w-4 h-4 mr-2"></i> 4. Industrie (<span id="count-industry">0</span>)
+                        </button>
+                        <button onclick="filterByBloc('europe_france')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-europe_france">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i> 5. Europe & France (<span id="count-europe_france">0</span>)
+                        </button>
+                    </nav>
                 </div>
 
-                <!-- Filtres -->
-                <div class="bg-white p-4 rounded-lg shadow-sm mb-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+                <!-- Filtres (Recherche, Priorité, Statut) -->
+                <div class="bg-white p-4 rounded-b-lg shadow-sm mb-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                     <!-- Recherche -->
                     <div class="relative w-full md:w-1/3">
                         <label for="filter-search" class="sr-only">Rechercher</label>
-                        <input type="text" id="filter-search" placeholder="Rechercher par nom, poste, entité..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-schneider-green">
+                        <input type="text" id="filter-search" placeholder="Rechercher dans ce groupe..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-schneider-green">
                         <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
                     </div>
                     <!-- Priorité -->
@@ -276,7 +400,7 @@
     </div>
 
     <!-- Script principal -->
-    <script type="module">
+    <script type(="module")>
         // --- CONFIGURATION UTILISATEUR REQUISE ---
         /**
          * @IMPORTANT: Modifiez cette URL pour pointer vers le fichier data.json DANS VOTRE DÉPÔT GITHUB.
@@ -288,11 +412,11 @@
 
         // --- VARIABLES GLOBALES ---
         let allContacts = []; // Cache pour les données
+        let currentBlocFilter = 'all'; // Filtre de bloc actif
         
         const contactsGrid = document.getElementById('contacts-grid');
         const loadingDiv = document.getElementById('loading-contacts');
         const emptyDiv = document.getElementById('empty-contacts');
-        const contactCountSpan = document.getElementById('contact-count');
         const filterSearch = document.getElementById('filter-search');
         const filterPriority = document.getElementById('filter-priority');
         const filterStatus = document.getElementById('filter-status');
@@ -333,14 +457,15 @@
                     return a.name.localeCompare(b.name);
                 });
 
-                updateDashboardStats(); // Mettre à jour le mini-dashboard
+                updateTabCounts(); // Mettre à jour les compteurs des onglets
                 renderContacts(); // Afficher les cartes
                 updateDbStatus(true, "Données chargées");
                 if (forceRefresh) {
                     showToast("Données rafraîchies avec succès.", "success");
                 }
 
-            } catch (error) {
+            } catch (error)
+            {
                 console.error("Erreur lors du chargement de data.json:", error);
                 showToast("Erreur de chargement des données.", "error");
                 updateDbStatus(false, "Erreur données");
@@ -351,24 +476,30 @@
         }
         
         /**
-         * Met à jour le mini-dashboard sur la page de contacts.
+         * Met à jour les compteurs sur les onglets de bloc.
          */
-        function updateDashboardStats() {
+        function updateTabCounts() {
             if (allContacts.length === 0) return;
             
-            const p1Count = allContacts.filter(c => c.priority === 1).length;
-            const p2Count = allContacts.filter(c => c.priority === 2).length;
-            const todoCount = allContacts.filter(c => c.statut === 'À Contacter' && c.statut !== 'Archivé').length;
-            const ongoingCount = allContacts.filter(c => c.statut === 'En Cours' && c.statut !== 'Archivé').length;
+            const counts = {
+                all: allContacts.length,
+                corporate: allContacts.filter(c => c.bloc === 'corporate').length,
+                em_digital: allContacts.filter(c => c.bloc === 'em_digital').length,
+                data_center: allContacts.filter(c => c.bloc === 'data_center').length,
+                industry: allContacts.filter(c => c.bloc === 'industry').length,
+                europe_france: allContacts.filter(c => c.bloc === 'europe_france').length,
+            };
 
-            document.getElementById('stat-p1').textContent = p1Count;
-            document.getElementById('stat-p2').textContent = p2Count;
-            document.getElementById('stat-todo').textContent = todoCount;
-            document.getElementById('stat-ongoing').textContent = ongoingCount;
+            for (const key in counts) {
+                const span = document.getElementById(`count-${key}`);
+                if (span) {
+                    span.textContent = counts[key];
+                }
+            }
         }
 
         /**
-         * Affiche les contacts dans la grille, en appliquant les filtres.
+         * Affiche les contacts dans la grille, en appliquant TOUS les filtres.
          */
         function renderContacts() {
             contactsGrid.innerHTML = ''; // Vider la grille
@@ -378,9 +509,16 @@
             const statusFilter = filterStatus.value;
 
             const filteredContacts = allContacts.filter(contact => {
+                // 1. Filtre de Bloc (Onglet)
+                const matchesBloc = (currentBlocFilter === 'all') || (contact.bloc === currentBlocFilter);
+                
+                // 2. Filtre de Priorité
                 const matchesPriority = (priorityFilter === 'all') || (String(contact.priority) === priorityFilter);
+                
+                // 3. Filtre de Statut
                 const matchesStatus = (statusFilter === 'all') || (contact.statut === statusFilter);
                 
+                // 4. Filtre de Recherche
                 const matchesSearch = !searchTerm ||
                     contact.name.toLowerCase().includes(searchTerm) ||
                     (contact.position && contact.position.toLowerCase().includes(searchTerm)) ||
@@ -388,15 +526,15 @@
                     (contact.interest && contact.interest.toLowerCase().includes(searchTerm)) ||
                     (contact.notes && contact.notes.toLowerCase().includes(searchTerm));
                     
-                return matchesPriority && matchesStatus && matchesSearch;
+                return matchesBloc && matchesPriority && matchesStatus && matchesSearch;
             });
             
-            contactCountSpan.textContent = filteredContacts.length;
-
             if (filteredContacts.length === 0) {
                 loadingDiv.classList.add('hidden');
                 emptyDiv.classList.remove('hidden');
-                emptyDiv.querySelector('p').textContent = allContacts.length > 0 ? "Aucun contact ne correspond à vos filtres." : "Aucun contact trouvé.";
+                let msg = "Aucun contact ne correspond à vos filtres.";
+                if (allContacts.length === 0) msg = "Aucun contact trouvé.";
+                emptyDiv.querySelector('p').textContent = msg;
                 return;
             }
 
@@ -417,7 +555,7 @@
         function createContactCard(contact) {
             const card = document.createElement('div');
             const isArchived = contact.statut === 'Archivé';
-            card.className = `bg-white rounded-lg shadow-lg overflow-hidden flex flex-col transition-all ${isArchived ? 'archived' : 'hover:-translate-y-1 stat-card'}`;
+            card.className = `contact-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col ${isArchived ? 'archived' : ''}`;
 
             // --- Couleurs de Priorité ---
             const priorityColors = {
@@ -484,6 +622,23 @@
 
         // --- GESTION DE L'UI (Navigation, Filtres) ---
 
+        /**
+         * Gère le clic sur un onglet de bloc.
+         */
+        window.filterByBloc = function(blocName) {
+            currentBlocFilter = blocName;
+            
+            // Mettre à jour le style des onglets
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`tab-${blocName}`).classList.add('active');
+            
+            // Réinitialiser la recherche et re-rendre la liste
+            filterSearch.value = '';
+            renderContacts();
+        }
+
         window.showPage = function(pageId) {
             // Cacher toutes les pages
             document.querySelectorAll('.page-content').forEach(page => {
@@ -517,19 +672,11 @@
             if (toastTimeout) clearTimeout(toastTimeout);
             
             toastMessage.textContent = message;
-            
-            // Réinitialiser les classes
             toast.classList.remove('bg-green-600', 'bg-red-600', 'bg-blue-600', 'bg-gray-900', 'opacity-0', 'translate-y-10');
             
-            if (type === 'success') {
-                toast.classList.add('bg-green-600');
-            } else if (type === 'error') {
-                toast.classList.add('bg-red-600');
-            } else if (type === 'info') {
-                toast.classList.add('bg-blue-600');
-            } else {
-                toast.classList.add('bg-gray-900');
-            }
+            if (type === 'success') { toast.classList.add('bg-green-600'); }
+            else if (type === 'error') { toast.classList.add('bg-red-600'); }
+            else { toast.classList.add('bg-blue-600'); }
             
             toastTimeout = setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-10');
@@ -566,10 +713,10 @@
         // Rendre les fonctions accessibles globalement
         window.showPage = showPage;
         window.loadContactsData = loadContactsData;
+        window.filterByBloc = filterByBloc;
 
     </script>
 </body>
 </html>
-
 
 
