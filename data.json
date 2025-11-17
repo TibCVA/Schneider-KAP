@@ -1,1 +1,379 @@
-i
+[
+    {
+        "name": "Frédéric Godemel",
+        "position": "Executive Vice President, Energy Management",
+        "entity": "Segment Energy Management (monde)",
+        "interest": "Sponsor global pour réseaux, data centers, bâtiments, services énergie. Membre du Comité Exécutif. Pilote le segment prioritaire pour CVA.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Gwenaelle Avice-Huet",
+        "position": "Executive Vice President, Industrial Automation",
+        "entity": "Segment Industrial Automation (monde)",
+        "interest": "Entrée pour décarbonation des procédés, efficacité énergétique industrielle, automation + IA dans les secteurs process et hybrides.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Peter Weckesser",
+        "position": "Chief Digital Officer & EVP Digital",
+        "entity": "Digital (fonction groupe)",
+        "interest": "Discussions IA à l’échelle, plateformes digitales client, gouvernance des données énergie et OT/IT. Clé pour connecter IA et transition énergétique.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Jing Ren",
+        "position": "Executive Vice President, Strategy, Brand & Communications",
+        "entity": "Strategy & Brand (monde)",
+        "interest": "Co-production de rapports et points de vue visibles (data centers, réseaux, transition énergétique). Porte la dimension “brand” des travaux CVA x Schneider.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Esther Finidori",
+        "position": "Chief Sustainability Officer",
+        "entity": "Sustainability (corporate, monde)",
+        "interest": "Alignement des trajectoires net-zéro, intégration de l’impact des DC, réseaux et industrie dans la stratégie climat. Membre de l’ExCom depuis juin 2025.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Sorouch Kheradmand",
+        "position": "Global Head of Sustainability, Business Ecosystem",
+        "entity": "Sustainability – Business Ecosystem (monde)",
+        "interest": "Programmes clients multi-pays ESG, énergie, décarbonation. Candidat naturel pour des offres de co-delivery CVA x Schneider.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Steve Wilhite",
+        "position": "Executive Vice President, SE Advisory Services",
+        "entity": "SE Advisory Services (monde)",
+        "interest": "Partenaire clé conseil-conseil pour missions conjointes, diagnostics, programmes net-zéro, publications partagées. Point d’entrée n°1 pour CVA.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Caspar Herzberg",
+        "position": "CEO AVEVA & EVP One Software",
+        "entity": "One Software / AVEVA (monde)",
+        "interest": "Due diligences et business models software pour réseaux, usines, data centers ; jumeaux numériques et “agnostic software” dans les projets énergie.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Dr Thomas Alan Kwan",
+        "position": "Vice President, Sustainability Research",
+        "entity": "Sustainability Research Institute (monde)",
+        "interest": "Co-construction de scénarios et rapports “AI & Energy”, analyses sur réseaux et systèmes électriques, adossement scientifique des POV CVA.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Vincent Minier",
+        "position": "Vice President, Energy Transition Research",
+        "entity": "Sustainability Research Institute (monde)",
+        "interest": "Recherche sur la transition des systèmes énergétiques, sécurité d’approvisionnement, intégration des ENR et impact de l’IA sur la demande électrique.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Rémi Paccou",
+        "position": "Director, Sustainability Research – Digital Chapter",
+        "entity": "Sustainability Research Institute (monde)",
+        "interest": "Production de recherche sur les nouveaux systèmes énergétiques et le chapitre digital (IA, data). Interlocuteur privilégié pour études AI & Energy.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Manish Kumar",
+        "position": "Executive Vice President, Digital Energy",
+        "entity": "Digital Energy – BU globale",
+        "interest": "POV et études sur bâtiments bas carbone, gestion de l’énergie, plateformes de données énergie. Interlocuteur de référence pour EcoStruxure Power & Building.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Damien Dhellemmes",
+        "position": "Senior Vice President, Digital Energy Commercial Organization",
+        "entity": "Digital Energy Commercial – Monde",
+        "interest": "Construction de playbooks commerciaux, ciblage clients pour offres de performance énergétique, structuration des campagnes communes CVA x Schneider.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Estelle Monod",
+        "position": "Building Segments President (SVP)",
+        "entity": "Building Segments – Monde",
+        "interest": "Co-travaux sur modèles économiques de la rénovation, offres “net-zero building” pour grands portfolios immobiliers, santé, retail, etc.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Luis Liberal",
+        "position": "Vice-Président Digital Energy & Building Segments France",
+        "entity": "Digital Energy & Building – France",
+        "interest": "Entrée marché bâtiments France (tertiaire, collectivités), compréhension de la régulation locale et des programmes multi-sites de rénovation.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Melton Chang",
+        "position": "Executive Vice President, Power Systems Division",
+        "entity": "Power Systems – division globale",
+        "interest": "Sujets DSO/TSO, smart grid, portefeuilles SF₆-free et investissements réseau. Cible clé pour analyses “grid & transition énergétique”.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Philippe Arsonneau",
+        "position": "Infrastructure Segment President / SVP",
+        "entity": "Infrastructure Segment – Power Systems (monde)",
+        "interest": "Analyses sur expansion réseau, mobilité électrique, semi-conducteurs et besoins en puissance. Idéal pour scénarios infra / trilemme énergétique.",
+        "priority": 2,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Gary Lawrence",
+        "position": "Power & Grid Segment President",
+        "entity": "Power & Grid Segment – Monde",
+        "interest": "Scénarios d’investissement réseau, rôle des data centers et de l’IA dans la charge, priorisation des zones de renforcement.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Sophie Borgne",
+        "position": "Water & Environment Segment President",
+        "entity": "Water & Environment Segment – Monde",
+        "interest": "Combiner eau, énergie, PFAS et effluents pour utilities et collectivités. Pont naturel vers les travaux CVA PFAS / eau / énergie.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Mahssa Kafai",
+        "position": "Vice-Présidente Power Systems France",
+        "entity": "Power Systems – France",
+        "interest": "Accès au marché réseau français, modernisation, projets démonstrateurs (notamment gamme AirSeT SF₆-free), dialogue avec DSO français.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Pankaj Sharma",
+        "position": "Executive Vice President, Data Centers & Networks et Global Services",
+        "entity": "Data Centers, Networks & Services – Monde",
+        "interest": "Sponsor haut niveau pour POV et études globales DC & IA, transformation digitale des services. Pilote l’ensemble Secure Power, Data Centers & Global Services.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Marc Garner",
+        "position": "President, Cloud & Service Providers Segment",
+        "entity": "Cloud & Service Providers – Monde",
+        "interest": "Analyses marché hyperscalers, stratégies d’implantation DC, modèles de service “AI-ready DC as a Service”. Cible clé côté hyperscalers.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Natalya Makarochkina",
+        "position": "Senior Vice President, Secure Power Division",
+        "entity": "Secure Power – division globale",
+        "interest": "Compréhension fine de la roadmap technologique DC (UPS, alimentation critique, refroidissement). Relais global sur la vision Secure Power.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Rob McKernan",
+        "position": "Senior Vice President, Secure Power and Data Centre division for Europe",
+        "entity": "Secure Power & Data Centre – Europe",
+        "interest": "Vue européenne sur capacité, régulation et concurrence DC. Point d’entrée pour une lecture “Europe DC market” consolidée.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Pablo Ruiz Escribano",
+        "position": "Senior Vice President, Secure Power & Data Centre Business, Europe",
+        "entity": "Secure Power & Data Centre Business – Europe",
+        "interest": "Exécution commerciale DC & Secure Power en Europe, très visible sur AI & DC. Partenaire pour études DC Europe et actions marketing conjointes.",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Nirupa Chander",
+        "position": "Senior Vice President, Secure Power & Data Centers, International Operations",
+        "entity": "Secure Power & DC – International (hors Europe / NA)",
+        "interest": "Dynamiques DC dans les marchés émergents (MEA, Asie, Amérique du Sud). Intéressant pour travaux sur accès à l’énergie et DC dans les zones de forte croissance.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Himamshu Prasad",
+        "position": "Senior Vice President, EcoStruxure IT, Transactional & Edge and Energy Storage CoE",
+        "entity": "EcoStruxure IT, Edge & Energy Storage – Monde",
+        "interest": "Cas d’usage techniques DC (densité, refroidissement liquide, modularité, edge) et business cases DC/IA autour des solutions EcoStruxure IT et du stockage.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Jerome Soltani",
+        "position": "Senior Vice President, U.S. Services",
+        "entity": "Services DC – EcoConsult, États-Unis",
+        "interest": "Learning sur les modèles de services DC (EcoConsult for Data Centers), modernisation des DC existants, possible extension de ces approches en Europe.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Hélène Macela-Gouin",
+        "position": "Vice President, Secure Power and Data Centers Business France",
+        "entity": "Secure Power & DC – France",
+        "interest": "Interlocutrice clé sur le marché DC français pour due diligences, études locales, co-évènements et ciblage des grands projets DC France.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Astrid Poupart-Lafarge",
+        "position": "Global Segment President Energies & Chemicals Industries",
+        "entity": "Energies & Chemicals Industries – Monde",
+        "interest": "Décarbonation de l’industrie lourde (Oil & Gas, chimie, etc.), arbitrage capex, projets complexes sur lesquels CVA peut intervenir (stratégie, due diligence).",
+        "priority": 3,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Christel Galbrun",
+        "position": "Segment President for Mobility",
+        "entity": "Mobility Segment – Monde",
+        "interest": "Chaîne de valeur batteries et gigafactories, impacts de la mobilité électrique sur les réseaux, besoins énergétiques des usines de batteries.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Chris Collins",
+        "position": "Senior Vice President, U.S. Digital Buildings",
+        "entity": "Digital Buildings – USA",
+        "interest": "Benchmark international sur programmes bâtiments et services de performance, utile pour inspirer les approches Europe / France.",
+        "priority": 0,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Laurent Bataille",
+        "position": "Executive Vice President, Europe Operations",
+        "entity": "Europe Operations – Europe",
+        "interest": "Sponsor régional pour plans Europe data centers, réseaux, bâtiments, industrie. Nommé EVP Europe Operations en 2025, ancien Président Schneider Electric France.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    },
+    {
+        "name": "Aymeric Renaud",
+        "position": "Président Schneider Electric France",
+        "entity": "Schneider Electric France – France",
+        "interest": "Coordination globale du KAP France et validation des initiatives conjointes. Profil orienté Industrial Automation & clients finaux.",
+        "priority": 1,
+        "statut": "À Contacter",
+        "notes": "",
+        "last_interaction": "",
+        "next_action_date": ""
+    }
+]
+
+
+
