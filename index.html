@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAP Schneider Electric - CVA (v7)</title>
+    <title>KAP Schneider Electric - CVA (v8)</title>
     <!-- Chargement de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes Lucide -->
@@ -23,7 +23,6 @@
                     },
                 },
             },
-            // Note: Le plugin typography n'est PLUS utilisé
         }
     </script>
     <!-- Style personnalisé -->
@@ -37,7 +36,7 @@
         /* Style pour les scrollbars */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
+
         /* Classe pour les cartes archivées */
         .archived { opacity: 0.6; filter: grayscale(80%); }
         .archived:hover { opacity: 1; filter: grayscale(0); }
@@ -70,7 +69,7 @@
             background-color: #f3f4f6;
             color: #111827;
         }
-        
+
         /* --- Styles pour le Schéma d'Organisation --- */
         .schema-diagram { position: relative; }
         .schema-level { display: grid; position: relative; }
@@ -85,7 +84,6 @@
         .schema-node-transverse { background-color: #fefce8; border-color: #fde047; font-size: 0.875rem; }
         .schema-node-geo { background-color: #f8f8f8; font-size: 0.875rem; }
 
-        /* Lignes de connexion CSS */
         .level-1 { grid-template-columns: 1fr; }
         .level-2 { grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
         .level-1 .schema-node::after {
@@ -109,10 +107,7 @@
             content: ''; position: absolute; left: 12.5%; right: 12.5%; top: -1.25rem;
             height: 1px; background-color: #d1d5db; z-index: 0;
         }
-        .level-2 .schema-node:first-child::after {
-            content: ''; position: absolute; left: 50%; top: 100%;
-            height: 1.25rem; width: 1px; background-color: #d1d5db;
-        }
+        .level-2 .schema-node:first-child::after,
         .level-2 .schema-node:last-child::after {
             content: ''; position: absolute; left: 50%; top: 100%;
             height: 1.25rem; width: 1px; background-color: #d1d5db;
@@ -130,52 +125,52 @@
             content: ''; position: absolute; left: 50%; right: 50%; top: 100%;
             height: 1.25rem; width: 1px; background-color: #d1d5db; z-index: 0;
         }
-        
-        /* --- NOUVEAU: Style "Léché" pour le contenu Architecture --- */
+
+        /* --- Style pour le contenu texte (Architecture & Enjeux) --- */
         .content-box h2 {
-            font-size: 1.5rem; /* 24px */
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #2b2b2b; /* schneider-dark */
-            border-bottom: 2px solid #009e4d; /* schneider-green */
-            padding-bottom: 0.5rem; /* 8px */
-            margin-top: 2rem; /* 32px */
-            margin-bottom: 1rem; /* 16px */
+            color: #2b2b2b;
+            border-bottom: 2px solid #009e4d;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
         }
         .content-box h2:first-child {
             margin-top: 0;
         }
         .content-box h3 {
-            font-size: 1.125rem; /* 18px */
+            font-size: 1.125rem;
             font-weight: 600;
-            color: #009e4d; /* schneider-green */
-            margin-top: 1.5rem; /* 24px */
-            margin-bottom: 0.75rem; /* 12px */
+            color: #009e4d;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
         }
         .content-box p {
             line-height: 1.7;
-            color: #374151; /* gray-700 */
+            color: #374151;
             margin-bottom: 1rem;
         }
         .content-box ul, .content-box ol {
-            margin-left: 1.25rem; /* 20px */
+            margin-left: 1.25rem;
             margin-bottom: 1.25rem;
             line-height: 1.7;
         }
         .content-box ul { list-style-type: disc; }
         .content-box ol { list-style-type: decimal; }
         .content-box li {
-             padding-left: 0.5rem; /* 8px */
-             margin-bottom: 0.5rem; /* 8px */
-             color: #374151; /* gray-700 */
+            padding-left: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #374151;
         }
         .content-box blockquote {
             margin-top: 1.25rem;
             margin-bottom: 1.25rem;
-            border-left: 4px solid #009e4d; /* schneider-green */
-            background-color: #f9fafb; /* gray-50 */
+            border-left: 4px solid #009e4d;
+            background-color: #f9fafb;
             padding: 1rem 1.5rem;
             font-style: italic;
-            color: #4d4d4d; /* schneider-gray */
+            color: #4d4d4d;
         }
         .content-box blockquote p {
             margin-bottom: 0;
@@ -189,19 +184,29 @@
             <div class="flex items-center justify-center lg:justify-start w-full mb-10 h-12">
                 <!-- Logo/Titre -->
                 <div class="w-12 h-12 bg-schneider-green rounded-lg flex items-center justify-center shrink-0">
-                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="w-7 h-7 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="w-7 h-7 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
                 </div>
                 <span class="hidden lg:block text-2xl font-bold ml-3">KAP Schneider</span>
             </div>
-            
+
             <ul class="flex flex-col items-center lg:items-start w-full space-y-3">
-                <!-- NOUVEAU: Contraste corrigé. 'active' = bg-schneider-green -->
+                <!-- Architecture -->
                 <li class="w-full">
                     <button onclick="showPage('overview')" id="nav-overview" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-white bg-schneider-green transition-colors">
                         <i data-lucide="layout-dashboard" class="w-6 h-6 shrink-0"></i>
                         <span class="hidden lg:block ml-4">Architecture</span>
                     </button>
                 </li>
+                <!-- NOUVEAU : Enjeux & CVA -->
+                <li class="w-full">
+                    <button onclick="showPage('strategy')" id="nav-strategy" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+                        <i data-lucide="target" class="w-6 h-6 shrink-0"></i>
+                        <span class="hidden lg:block ml-4">Enjeux & CVA</span>
+                    </button>
+                </li>
+                <!-- Contacts KAP -->
                 <li class="w-full">
                     <button onclick="showPage('contacts')" id="nav-contacts" class="nav-button flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
                         <i data-lucide="users" class="w-6 h-6 shrink-0"></i>
@@ -209,14 +214,14 @@
                     </button>
                 </li>
             </ul>
-            
+
             <div class="mt-auto flex flex-col items-center lg:items-start w-full">
                 <!-- Statut des données -->
                 <div id="db-status" class="flex items-center justify-center lg:justify-start w-full p-3 rounded-lg text-xs text-gray-500">
                     <div id="db-status-light" class="w-3 h-3 bg-yellow-500 rounded-full shrink-0"></div>
                     <span id="db-status-text" class="hidden lg:block ml-2">Chargement données...</span>
                 </div>
-                 <!-- Note sur la modification -->
+                <!-- Note sur la modification -->
                 <div class="p-3 text-xs text-gray-600 w-full">
                     <i data-lucide="edit" class="w-4 h-4 text-gray-500 hidden lg:inline-block mr-1"></i>
                     <span class="hidden lg:inline">Modifiez via `data.json` sur GitHub.</span>
@@ -226,38 +231,41 @@
 
         <!-- Contenu principal -->
         <main class="flex-1 bg-gray-100 text-gray-900 overflow-y-auto">
-            
-            <!-- Page 1: Vue d'ensemble (Refonte totale) -->
+
+            <!-- Page 1: Vue d'ensemble Architecture -->
             <div id="page-overview" class="page-content p-8 lg:p-12">
-                
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">Architecture Globale de Schneider Electric</h1>
-                <p class="text-lg text-gray-600 mb-8">Comprendre comment Schneider se structure pour servir ses clients.</p>
+                <p class="text-lg text-gray-600 mb-8">
+                    Comprendre comment Schneider structure ses activités pour servir les marchés finaux et où se situent les points d’ancrage du KAP CVA.
+                </p>
 
                 <!-- Schéma de l'organisation (Visuel CSS) -->
                 <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
                     <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Schéma d'Organisation Agrégé (KAP CVA)</h2>
-                    
+
                     <div class="flex">
                         <!-- Bandeau Latéral : Géographies -->
                         <div class="flex flex-col justify-center space-y-2 pr-4 mr-4 border-r-2 border-gray-200">
                             <h3 class="text-xs font-bold text-gray-500 uppercase text-center mb-2">Régions</h3>
-                            <div class="schema-node schema-node-geo py-2">North America</div>
-                            <div class="schema-node schema-node-geo py-2">Western Europe</div>
-                            <div class="schema-node schema-node-geo py-2">Asia Pacific</div>
-                            <div class="schema-node schema-node-geo py-2">Rest of the World</div>
+                            <div class="schema-node schema-node-geo py-2">North America Operations</div>
+                            <div class="schema-node schema-node-geo py-2">Europe Operations</div>
+                            <div class="schema-node schema-node-geo py-2">France Operations</div>
+                            <div class="schema-node schema-node-geo py-2">International & China / East Asia</div>
                         </div>
 
                         <!-- Cœur du schéma -->
                         <div class="flex-1 schema-diagram">
                             <!-- Niveau 1: Groupe -->
                             <div class="schema-level level-1">
-                                <div class="schema-node schema-node-segment w-1/2 mx-auto">Schneider Electric Group</div>
+                                <div class="schema-node schema-node-segment w-1/2 mx-auto">
+                                    Schneider Electric Group
+                                </div>
                             </div>
-                            
+
                             <!-- Niveau 2: Segments -->
                             <div class="schema-level level-2">
-                                <div class="schema-node schema-node-segment">Energy Management (82%)</div>
-                                <div class="schema-node schema-node-segment">Industrial Automation (18%)</div>
+                                <div class="schema-node schema-node-segment">Energy Management (≈ 82%)</div>
+                                <div class="schema-node schema-node-segment">Industrial Automation (≈ 18%)</div>
                             </div>
 
                             <!-- Niveau 3: End-Markets -->
@@ -270,9 +278,9 @@
 
                             <!-- Niveau 4: Offres -->
                             <div class="schema-level level-4">
-                                <div class="schema-node schema-node-offer">Products (48%)</div>
-                                <div class="schema-node schema-node-offer">Systems (34%)</div>
-                                <div class="schema-node schema-node-offer">Software & Services (18%)</div>
+                                <div class="schema-node schema-node-offer">Products (≈ 48%)</div>
+                                <div class="schema-node schema-node-offer">Systems (≈ 34%)</div>
+                                <div class="schema-node schema-node-offer">Software & Services (≈ 18%)</div>
                             </div>
                         </div>
                     </div>
@@ -282,59 +290,477 @@
                         <h3 class="text-sm font-bold text-gray-500 uppercase text-center mb-2">Couches Transverses</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
                             <div class="schema-node schema-node-transverse">SE Advisory Services</div>
-                            <div class="schema-node schema-node-transverse">Agnostic Software (AVEVA, ETAP...)</div>
+                            <div class="schema-node schema-node-transverse">One Software (AVEVA, ETAP...)</div>
                             <div class="schema-node schema-node-transverse">Sustainability & SRI</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- NOUVEAU: Contenu Détaillé (Design "Léché") -->
+                <!-- Contenu détaillé Architecture -->
                 <div class="content-box">
-                    <h2>1. Deux Segments de Reporting Business</h2>
-                    <p>D'après les comptes 2024, Schneider est organisé en deux segments financiers :</p>
+                    <h2>1. Deux segments de reporting business</h2>
+                    <p>
+                        D’après les comptes 2024, Schneider présente deux grands segments financiers&nbsp;:
+                    </p>
                     <ul>
-                        <li><strong>Energy Management (EM)</strong>: Regroupe l'essentiel des activités de gestion de l'énergie (distribution, contrôle). C'est <strong>~82% des revenus</strong> (31,1 Md€).</li>
-                        <li><strong>Industrial Automation (IA)</strong>: Couvre l'automatisation et le contrôle des procédés (DCS, SCADA, logiciels industriels). Représente <strong>~18% des revenus</strong> (7,0 Md€).</li>
+                        <li>
+                            <strong>Energy Management (EM)</strong> : regroupe l’essentiel des activités de gestion de l’énergie
+                            (distribution, contrôle, digitalisation). C’est ≈ <strong>82&nbsp;% du chiffre d’affaires</strong>, soit
+                            environ <strong>31,1&nbsp;Md€</strong>. Il couvre les divisions Home &amp; Distribution, Power Products,
+                            Power Systems, Secure Power et Digital Energy.
+                        </li>
+                        <li>
+                            <strong>Industrial Automation (IA)</strong> : couvre l’automatisation et le contrôle des procédés
+                            (automatisme discret, process &amp; hybrid, logiciels industriels), pour ≈ <strong>18&nbsp;% du chiffre
+                            d’affaires</strong>, soit environ <strong>7,0&nbsp;Md€</strong>.
+                        </li>
                     </ul>
-                    <blockquote><p>Message clef : L'énergie et l'automatisation sont deux businesses distincts, mais systématiquement combinés dans les offres clients.</p></blockquote>
+                    <blockquote>
+                        <p>
+                            Message clef : Energy Management et Industrial Automation sont des P&amp;L distincts, mais les offres
+                            sont systématiquement combinées dans les projets clients (bâtiments, data centers, usines, réseaux).
+                        </p>
+                    </blockquote>
 
-                    <h2>2. Go-to-Market : 4 Marchés Finaux</h2>
-                    <p>Schneider vend son portefeuille intégré dans quatre "end-markets" :</p>
+                    <h2>2. Go-to-market : 4 marchés finaux prioritaires</h2>
+                    <p>
+                        Ce portefeuille EM + IA est délivré à travers quatre “end-markets” globaux :
+                    </p>
                     <ol>
-                        <li><strong>Buildings</strong>: Bâtiments non résidentiels (tertiaire, santé) et résidentiels. Traction tirée par la numérisation (BMS) et l'efficacité énergétique.</li>
-                        <li><strong>Data Center & Networks</strong>: Hyperscale, colocation, edge. Moteur central de la croissance, notamment en Amérique du Nord.</li>
-                        <li><strong>Infrastructure</strong>: Utilities électriques, eau, transports. Demande portée par la modernisation des réseaux, les ENR et les besoins de résilience.</li>
-                        <li><strong>Industry</strong>: Process & Hybride (Énergie, Chimie, Mines) et automation discrète (OEM).</li>
+                        <li>
+                            <strong>Buildings</strong> : bâtiments tertiaires et résidentiels. La dynamique est tirée par la
+                            <em>digitalisation</em> (BMS, comptage, pilotage des usages) et par la <em>décarbonation</em> des parcs
+                            (programmes type “Impact Buildings”), même si certains marchés résidentiels sont plus volatils.
+                        </li>
+                        <li>
+                            <strong>Data Center &amp; Networks</strong> : hyperscale, colocation, edge, télécoms. C’est un
+                            <strong>moteur majeur de croissance</strong> d’Energy Management, en particulier dans les pays où la
+                            demande IA explose (États‑Unis, Chine, France), avec de fortes contraintes sur la capacité réseau.
+                        </li>
+                        <li>
+                            <strong>Infrastructure</strong> : utilities électriques, eau, transports, e‑mobility. La demande est
+                            portée par la modernisation des réseaux (One Digital Grid, virtual substations), l’intégration massive
+                            d’ENR et la résilience face aux aléas climatiques.
+                        </li>
+                        <li>
+                            <strong>Industry</strong> : industries de process &amp; hybrides (énergie, chimie, MMM, etc.) et
+                            automation discrète (OEM, machines, usines). L’enjeu est de combiner productivité, qualité et
+                            décarbonation via l’automatisation et le software.
+                        </li>
                     </ol>
 
-                    <h2>3. Trois Familles d'Offres (Ventilation Q3 2025)</h2>
-                    <p>Le revenu Groupe est décomposé en trois catégories :</p>
+                    <h2>3. Trois familles d’offres (ventilation FY / Q3&nbsp;2025)</h2>
+                    <p>
+                        Le chiffre d’affaires se répartit en trois grandes familles d’offres :
+                    </p>
                     <ul>
-                        <li><strong>Products (48%)</strong>: Produits standards (appareillage BT/MT, composants).</li>
-                        <li><strong>Systems (34%)</strong>: Offres systèmes combinant équipements, engineering et software (projets DC, réseaux, usines).</li>
-                        <li><strong>Software & Services (18%)</strong>: Inclut "agnostic software" (AVEVA, ETAP) et les services (EcoStruxure, Field Services).</li>
+                        <li>
+                            <strong>Products (~48&nbsp;%)</strong> : appareillage BT/MT, protections, composants d’automatisme,
+                            produits standard. Croissance modérée, avec des poches de pression en résidentiel.
+                        </li>
+                        <li>
+                            <strong>Systems (~34&nbsp;%)</strong> : projets complexes combinant équipements, engineering et
+                            software (data centers, postes électriques, microgrids, lignes de process). Très forte dynamique,
+                            tirée par les data centers et les projets réseau.
+                        </li>
+                        <li>
+                            <strong>Software &amp; Services (~18&nbsp;%)</strong> : logiciels “agnostiques” (AVEVA, ETAP, RIB…),
+                            digital services (EcoStruxure advisors, cybersécurité), et field services. Pôle de croissance
+                            structurante pour le groupe.
+                        </li>
                     </ul>
-                    <blockquote><p>Message clef : Les "Systems" et "Software & Services" sont un bloc majeur (52% combinés) sur lequel CVA peut se brancher.</p></blockquote>
+                    <blockquote>
+                        <p>
+                            Message clef : pour CVA, la valeur “stratégie / études / business model” se concentre sur
+                            <strong>Systems</strong> et <strong>Software &amp; Services</strong>, où Schneider cherche à accélérer.
+                        </p>
+                    </blockquote>
 
-                    <h2>4. Déclinaison Interne pour CVA</h2>
-                    <p>Cette structure se traduit en divisions opérationnelles clés pour notre KAP :</p>
+                    <h2>4. Déclinaison interne pour CVA</h2>
+                    <p>
+                        Cette architecture se traduit en divisions opérationnelles clés pour le KAP :
+                    </p>
                     <h3>Divisions Energy Management (EM)</h3>
                     <ul>
-                        <li><strong>Power Systems</strong>: Moyenne tension, smart grid. Cible pour les sujets utilities, réseaux.</li>
-                        <li><strong>Secure Power</strong>: Alimentation sécurisée, refroidissement. Cœur de l'offre Data Center.</li>
-                        <li><strong>Digital Energy</strong>: Solutions digitales (BMS, power management, EcoStruxure).</li>
-                        <li>(Home & Distribution / Power Products): Appareillage BT, résidentiel.</li>
+                        <li>
+                            <strong>Power Systems</strong> : moyenne tension, postes, automatismes réseaux, solutions One Digital
+                            Grid, virtual substations. Cible prioritaire pour les sujets <em>utilities / réseaux</em>.
+                        </li>
+                        <li>
+                            <strong>Secure Power</strong> : alimentation critique, onduleurs, refroidissement. Cœur des offres
+                            <em>data centers &amp; IA</em>.
+                        </li>
+                        <li>
+                            <strong>Digital Energy</strong> : solutions digitales pour bâtiments et power management
+                            (EcoStruxure Power &amp; Building, Impact Buildings).
+                        </li>
+                        <li>
+                            <strong>Home &amp; Distribution / Power Products</strong> : appareillage BT, résidentiel, petits
+                            tertiaires. Moins central pour CVA, mais important pour la lecture complète du portefeuille.
+                        </li>
                     </ul>
-                    <h3>Couches Transverses Critiques</h3>
+
+                    <h3>Lignes d’activité Industrial Automation (IA)</h3>
+                    <ul>
+                        <li>
+                            <strong>Automatisation de process &amp; hybrid</strong> : DCS, SCADA, advanced control pour les
+                            segments Energies &amp; Chemicals, MMM, food &amp; bev.
+                        </li>
+                        <li>
+                            <strong>Automatisation discrète &amp; OEM</strong> : machines, robotique, lignes de production
+                            automatisées.
+                        </li>
+                        <li>
+                            <strong>Software industriel</strong> (en connexion forte avec One Software / AVEVA) : MES, operations
+                            management, digital twins.
+                        </li>
+                    </ul>
+
+                    <h3>Couches transverses critiques</h3>
                     <ol>
-                        <li><strong>SE Advisory Services</strong>: La marque de conseil globale de Schneider. Cadre naturel pour des missions conjointes.</li>
-                        <li><strong>Agnostic Software</strong>: Le bloc AVEVA, ETAP, RIB. Irrigue tous les marchés (digital twins, simulation).</li>
-                        <li><strong>Durabilité & SRI</strong>: Porté par la CSO au Comex et le Sustainability Research Institute (SRI).</li>
+                        <li>
+                            <strong>SE Advisory Services</strong> : entité de conseil globale (énergie, risques, décarbonation,
+                            digitalisation). C’est le point d’ancrage naturel pour des missions conjointes CVA x Schneider.
+                        </li>
+                        <li>
+                            <strong>One Software (AVEVA, ETAP, RIB…)</strong> : bloc “agnostic software” au-dessus des équipements
+                            et systèmes, couvrant industrie, réseaux, data centers.
+                        </li>
+                        <li>
+                            <strong>Durabilité &amp; Sustainability Research Institute (SRI)</strong> : fonction CSO au Comex et
+                            institut de recherche produisant scénarios et cadres analytiques (IA &amp; énergie, iNPV…).
+                        </li>
                     </ol>
+
+                    <h2>5. Tendances structurantes 2024–2025 pour Schneider</h2>
+                    <ul>
+                        <li>
+                            <strong>AI &amp; Data Centers</strong> : la montée de l’IA crée un “supercycle” d’investissements DC
+                            et tire fortement les revenus Systems &amp; Services. Les contraintes de capacité réseau deviennent
+                            un sujet majeur (raccordements, files d’attente, efficacité énergétique des DC).
+                        </li>
+                        <li>
+                            <strong>Électrification de l’Europe</strong> : les travaux récents de Schneider montrent qu’une
+                            électrification accélérée des bâtiments, de la mobilité et de l’industrie pourrait générer des
+                            économies annuelles de l’ordre de centaines de milliards d’euros, tout en renforçant la sécurité
+                            d’approvisionnement. Europe Operations devient un hub clé de cette trajectoire.
+                        </li>
+                        <li>
+                            <strong>Eau &amp; résilience des infrastructures</strong> : le segment Water &amp; Environment
+                            alerte sur la crise de l’eau et la nécessité de moderniser les infrastructures (détection de fuites,
+                            digitalisation, OT/IT/ET, cybersécurité).
+                        </li>
+                    </ul>
+
+                    <h2>6. Organisation multi-hub & rôle de l’Europe / France</h2>
+                    <p>
+                        Les segments globaux (Energy Management, Industrial Automation, One Software) sont déployés via une
+                        organisation multi‑hub&nbsp;:
+                    </p>
+                    <ul>
+                        <li><strong>North America Operations</strong></li>
+                        <li><strong>Europe Operations</strong></li>
+                        <li><strong>France Operations</strong></li>
+                        <li><strong>International Operations</strong> et <strong>China &amp; East Asia</strong></li>
+                    </ul>
+                    <p>
+                        Pour le KAP CVA, les hubs prioritaires sont <strong>Europe</strong> et <strong>France</strong> (Europe
+                        Operations, Schneider Electric France) ainsi que les unités globales qui pilotent les data centers,
+                        les réseaux, l’industrie et le software. Les 34 contacts du KAP se répartissent entre ces niveaux :
+                        certains pilotent des segments mondiaux, d’autres des régions, d’autres enfin des segments marchés
+                        globaux (Cloud &amp; Service Providers, Energies &amp; Chemicals, Mobility, Water &amp; Environment…).
+                    </p>
                 </div>
             </div>
 
-            <!-- Page 2: Contacts KAP (Refonte avec Onglets) -->
+            <!-- Page 2 : Enjeux & CVA (nouvelle page) -->
+            <div id="page-strategy" class="page-content p-8 lg:p-12" style="display: none;">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Enjeux stratégiques &amp; angles CVA</h1>
+                        <p class="text-lg text-gray-600">
+                            Synthèse des grands enjeux 2024–2025 par bloc Schneider et des espaces de collaboration CVA.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vue synthétique sous forme de cartes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
+                    <div class="stat-card bg-white rounded-lg shadow-lg p-5 border border-gray-100">
+                        <h3 class="text-sm font-semibold text-schneider-green mb-1 uppercase">1. Corporate &amp; Transverse</h3>
+                        <p class="text-sm text-gray-700">
+                            Stratégie groupe, digital &amp; IA à l’échelle, durabilité et recherche (SRI), conseil global
+                            (SE Advisory) et One Software (AVEVA, ETAP…).
+                        </p>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Contacts : Frédéric Godemel, Gwenaelle Avice‑Huet, Peter Weckesser, Jing Ren, Esther Finidori,
+                            Sorouch Kheradmand, Steve Wilhite, Caspar Herzberg, Thomas Kwan, Vincent Minier, Rémi Paccou.
+                        </p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-lg p-5 border border-gray-100">
+                        <h3 class="text-sm font-semibold text-schneider-green mb-1 uppercase">
+                            2. Energy Management, Digital &amp; Infrastructure
+                        </h3>
+                        <p class="text-sm text-gray-700">
+                            Digitalisation des bâtiments, smart grids, One Digital Grid, SF₆‑free, eau &amp; environnement,
+                            France réseaux &amp; Power Systems.
+                        </p>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Contacts : Manish Kumar, Damien Dhellemmes, Estelle Monod, Luis Liberal, Melton Chang,
+                            Philippe Arsonneau, Gary Lawrence, Sophie Borgne, Mahssa Kafai.
+                        </p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-lg p-5 border border-gray-100">
+                        <h3 class="text-sm font-semibold text-schneider-green mb-1 uppercase">
+                            3. Data Centers, Secure Power &amp; Services
+                        </h3>
+                        <p class="text-sm text-gray-700">
+                            Supercycle IA/DC, architectures Secure Power, EcoStruxure IT, services EcoConsult,
+                            data centers Europe, France et pays émergents.
+                        </p>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Contacts : Pankaj Sharma, Marc Garner, Natalya Makarochkina, Rob McKernan,
+                            Pablo Ruiz Escribano, Nirupa Chander, Himanshu Prasad, Jerome Soltani,
+                            Hélène Macela‑Gouin.
+                        </p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-lg p-5 border border-gray-100">
+                        <h3 class="text-sm font-semibold text-schneider-green mb-1 uppercase">
+                            4. Industrie, mobilité &amp; Digital Buildings
+                        </h3>
+                        <p class="text-sm text-gray-700">
+                            Décarbonation de l’industrie (Energies &amp; Chemicals), chaîne de valeur batteries
+                            &amp; gigafactories, programmes Digital Buildings USA.
+                        </p>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Contacts : Astrid Poupart‑Lafarge, Christel Galbrun, Chris Collins.
+                        </p>
+                    </div>
+                    <div class="stat-card bg-white rounded-lg shadow-lg p-5 border border-gray-100">
+                        <h3 class="text-sm font-semibold text-schneider-green mb-1 uppercase">
+                            5. Europe &amp; France (ancrage local)
+                        </h3>
+                        <p class="text-sm text-gray-700">
+                            Europe Operations, Schneider Electric France, Digital Energy &amp; Power Systems France,
+                            Secure Power &amp; DC France : relais pour décliner les priorités globales au niveau local.
+                        </p>
+                        <p class="mt-2 text-xs text-gray-500">
+                            Contacts : Laurent Bataille, Aymeric Renaud, Luis Liberal, Mahssa Kafai, Hélène Macela‑Gouin.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Détail par bloc, en mode texte structuré -->
+                <div class="content-box">
+                    <h2>1. Corporate &amp; Transverse</h2>
+                    <p>
+                        Ce bloc regroupe les fonctions qui fixent le cadre global : segments EM &amp; IA, stratégie,
+                        digital &amp; IA, durabilité, recherche et software. Il donne le cap des grandes priorités
+                        (AI &amp; Energy, électrification, durabilité, modèle One Software, conseil SE Advisory).
+                    </p>
+                    <h3>Enjeux récents</h3>
+                    <ul>
+                        <li>
+                            <strong>Digital &amp; IA à l’échelle</strong> : sous l’impulsion du CDO (Peter Weckesser),
+                            l’IA est positionnée comme un levier transversal (grids, data centers, bâtiments, industrie).
+                        </li>
+                        <li>
+                            <strong>Stratégie &amp; marque intégrées</strong> : Jing Ren pilote une équipe combinant
+                            stratégie, marque et communications pour porter une proposition de valeur unifiée
+                            (“energy technology partner”).
+                        </li>
+                        <li>
+                            <strong>Durabilité &amp; recherche</strong> : la CSO (Esther Finidori) et le Sustainability
+                            Research Institute (Kwan, Minier, Paccou) structurent les scénarios AI &amp; Energy,
+                            électrification, nouveaux systèmes énergétiques, iNPV.
+                        </li>
+                        <li>
+                            <strong>SE Advisory &amp; One Software</strong> : SE Advisory Services (Steve Wilhite)
+                            devient la branche de conseil globale, en lien étroit avec One Software (Caspar Herzberg,
+                            AVEVA, ETAP, RIB).
+                        </li>
+                    </ul>
+                    <h3>Angles CVA</h3>
+                    <ul>
+                        <li>
+                            Co‑production de <strong>points de vue globaux</strong> (AI &amp; Energy, DC, réseaux,
+                            électrification Europe) avec Strategy &amp; Brand + SRI.
+                        </li>
+                        <li>
+                            Partenariats conseil‑conseil avec <strong>SE Advisory Services</strong> sur les trajectoires
+                            net‑zéro, AI &amp; DC, modernisation réseaux &amp; eau.
+                        </li>
+                        <li>
+                            Travaux de <strong>business model &amp; stratégie produit</strong> sur le périmètre
+                            One Software / AVEVA (logiciels industriels, réseaux, DC).
+                        </li>
+                    </ul>
+
+                    <h2>2. Energy Management, Digital &amp; Infrastructure</h2>
+                    <p>
+                        Ce bloc couvre les divisions Digital Energy, Power Systems, segments Infrastructure et Water &amp;
+                        Environment, ainsi que Power Systems France. C’est le cœur des sujets réseaux, bâtiments et eau.
+                    </p>
+                    <h3>Enjeux récents</h3>
+                    <ul>
+                        <li>
+                            <strong>Smart buildings &amp; Impact Buildings</strong> (Manish Kumar, Estelle Monod,
+                            Luis Liberal) : accélération de la rénovation bas carbone et de la digitalisation des parcs
+                            tertiaires, avec un enjeu fort de modèles économiques.
+                        </li>
+                        <li>
+                            <strong>Smart grids &amp; One Digital Grid</strong> (Melton Chang, Philippe Arsonneau,
+                            Gary Lawrence) : modernisation des réseaux MV/HV, virtual substations, gestion des files
+                            d’attente ENR, intégration de la demande IA/DC.
+                        </li>
+                        <li>
+                            <strong>Eau &amp; environnement</strong> (Sophie Borgne) : crise de l’eau, pertes en réseau,
+                            besoin d’investissements dans les infrastructures et le digital.
+                        </li>
+                        <li>
+                            <strong>France réseaux &amp; SF₆‑free</strong> (Mahssa Kafai) : déploiement de la gamme
+                            AirSeT et projets démonstrateurs avec les DSO français.
+                        </li>
+                    </ul>
+                    <h3>Angles CVA</h3>
+                    <ul>
+                        <li>
+                            Études de <strong>potentiel de rénovation</strong> (bâtiments tertiaires France/Europe),
+                            business cases pour Digital Energy &amp; Impact Buildings.
+                        </li>
+                        <li>
+                            Scénarios de <strong>modernisation des réseaux</strong> (One Digital Grid, SF₆‑free,
+                            ENR + IA/DC), priorisation par pays et par type de réseaux.
+                        </li>
+                        <li>
+                            Travaux sur les <strong>modèles d’investissement eau &amp; environnement</strong> :
+                            utilities, villes, financement de projets smart water.
+                        </li>
+                    </ul>
+
+                    <h2>3. Data Centers, Secure Power &amp; Services</h2>
+                    <p>
+                        Ce bloc regroupe les activités Secure Power &amp; DC (global, Europe, International, France),
+                        EcoStruxure IT, services DC (EcoConsult) et le segment Cloud &amp; Service Providers.
+                    </p>
+                    <h3>Enjeux récents</h3>
+                    <ul>
+                        <li>
+                            <strong>Supercycle AI/DC</strong> (Pankaj Sharma, Marc Garner, Natalya Makarochkina) :
+                            explosion de la demande en capacité DC liée à l’IA, contraintes de puissance et de
+                            durabilité, nécessité de nouvelles architectures (liquid cooling, modularité, edge).
+                        </li>
+                        <li>
+                            <strong>Europe &amp; marchés émergents</strong> (Rob McKernan, Pablo Ruiz Escribano,
+                            Nirupa Chander) : montée en puissance des capacités DC en Europe, structuration dans
+                            les pays émergents (MEA, Asie, Amérique du Sud).
+                        </li>
+                        <li>
+                            <strong>Services &amp; EcoStruxure IT</strong> (Himanshu Prasad, Jerome Soltani) :
+                            monitoring DC, optimisation du TCO, offres EcoConsult for Data Centers comme référence
+                            sur le marché US.
+                        </li>
+                        <li>
+                            <strong>France DC</strong> (Hélène Macela‑Gouin) : ancrage sur le marché français
+                            (due diligences, études locales, grands projets DC France).
+                        </li>
+                    </ul>
+                    <h3>Angles CVA</h3>
+                    <ul>
+                        <li>
+                            Études <strong>“AI‑ready data centers”</strong> par région (Europe, US, International) :
+                            sizing, localisation, raccordement réseau, trajectoires de consommation.
+                        </li>
+                        <li>
+                            Construction de <strong>value pools DC &amp; IA</strong> (hyperscalers, colos, edge) et
+                            positionnement des offres Secure Power / EcoStruxure IT.
+                        </li>
+                        <li>
+                            Benchmark des <strong>modèles de services DC</strong> (EcoConsult US vs Europe) et
+                            recommandations de scaling.
+                        </li>
+                    </ul>
+
+                    <h2>4. Industrie, mobilité &amp; Digital Buildings</h2>
+                    <p>
+                        Ce bloc couvre les segments Energies &amp; Chemicals, Mobility et Digital Buildings US. Il
+                        représente le lien entre la transformation industrielle, les chaînes de valeur batteries et les
+                        programmes bâtiments US.
+                    </p>
+                    <h3>Enjeux récents</h3>
+                    <ul>
+                        <li>
+                            <strong>Energies &amp; Chemicals</strong> (Astrid Poupart‑Lafarge) : digitalisation et
+                            décarbonation des complexes industriels (data platforms, simulations intégrées, opérations
+                            autonomes).
+                        </li>
+                        <li>
+                            <strong>Mobilité &amp; batteries</strong> (Christel Galbrun) : gigafactories batteries,
+                            qualité et réduction de scrap grâce à l’analytics et aux architectures de données intégrées.
+                        </li>
+                        <li>
+                            <strong>Digital Buildings US</strong> (Chris Collins) : bâtiments résilients, centrés sur
+                            l’humain, bas carbone, couplés à des microgrids et à des services digitaux avancés.
+                        </li>
+                    </ul>
+                    <h3>Angles CVA</h3>
+                    <ul>
+                        <li>
+                            Études de <strong>décarbonation des industries lourdes</strong> (capex, ROI, trajectoires
+                            net‑zéro) pour Energies &amp; Chemicals.
+                        </li>
+                        <li>
+                            Analyses de <strong>chaîne de valeur batteries &amp; gigafactories</strong> (Europe, US)
+                            incluant besoins réseaux et qualité industrielle.
+                        </li>
+                        <li>
+                            Benchmark des <strong>programmes Digital Buildings US</strong> pour inspirer les trajectoires
+                            Europe / France.
+                        </li>
+                    </ul>
+
+                    <h2>5. Europe &amp; France</h2>
+                    <p>
+                        Ce bloc rassemble Europe Operations, Schneider Electric France et les relais France pour Digital
+                        Energy, Power Systems et Secure Power &amp; DC. C’est l’ancrage local pour décliner les priorités
+                        globales dans les marchés à fort enjeu pour CVA.
+                    </p>
+                    <h3>Enjeux récents</h3>
+                    <ul>
+                        <li>
+                            <strong>Électrification &amp; compétitivité de l’Europe</strong> (Laurent Bataille) :
+                            électrification des bâtiments, mobilité et industrie comme levier d’économies, de sécurité
+                            énergétique et d’emplois.
+                        </li>
+                        <li>
+                            <strong>Stratégie France</strong> (Aymeric Renaud) : industrialisation, industrie du futur,
+                            attractivité de l’industrie française, articulation entre automation, énergie et digital.
+                        </li>
+                        <li>
+                            <strong>Relais France pour les offres globales</strong> (Luis Liberal, Mahssa Kafai,
+                            Hélène Macela‑Gouin) : déploiement local de Digital Energy, Power Systems et Secure Power
+                            &amp; DC sur le marché français.
+                        </li>
+                    </ul>
+                    <h3>Angles CVA</h3>
+                    <ul>
+                        <li>
+                            Co‑construction d’un <strong>plan Europe &amp; France</strong> couvrant DC, réseaux, bâtiments,
+                            industrie et eau, avec un sponsor unique côté Europe Operations.
+                        </li>
+                        <li>
+                            Structuration d’un <strong>KAP France</strong> formalisé, appuyé sur les relais métiers
+                            (Digital Energy France, Power Systems France, Secure Power &amp; DC France).
+                        </li>
+                        <li>
+                            Définition d’un portefeuille de <strong>missions conjointes CVA x Schneider France</strong>
+                            (due diligences, études de marché, POV sectoriels).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Page 3: Contacts KAP -->
             <div id="page-contacts" class="page-content p-8 lg:p-12" style="display: none;">
                 <!-- Header Page Contacts -->
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -342,7 +768,7 @@
                         <h1 class="text-3xl font-bold text-gray-800">Contacts KAP Schneider</h1>
                         <p class="text-lg text-gray-600">Tableau de bord par "Bloc" organisationnel.</p>
                     </div>
-                    <!-- Bouton de rafraîchissement des données (Contraste OK) -->
+                    <!-- Bouton de rafraîchissement des données -->
                     <button onclick="loadContactsData(true)" class="mt-4 md:mt-0 bg-schneider-green hover:bg-green-700 text-white font-bold py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center">
                         <i data-lucide="refresh-cw" class="w-5 h-5 mr-2"></i>
                         Rafraîchir les données
@@ -359,7 +785,7 @@
                             <i data-lucide="briefcase" class="w-4 h-4 mr-2"></i> 1. Corporate (<span id="count-corporate">0</span>)
                         </button>
                         <button onclick="filterByBloc('em_digital')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-em_digital">
-                            <i data-lucide="building" class="w-4 h-4 mr-2"></i> 2. EM & Digital (<span id="count-em_digital">0</span>)
+                            <i data-lucide="building" class="w-4 h-4 mr-2"></i> 2. EM &amp; Digital (<span id="count-em_digital">0</span>)
                         </button>
                         <button onclick="filterByBloc('data_center')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-data_center">
                             <i data-lucide="server" class="w-4 h-4 mr-2"></i> 3. Data Center (<span id="count-data_center">0</span>)
@@ -368,7 +794,7 @@
                             <i data-lucide="factory" class="w-4 h-4 mr-2"></i> 4. Industrie (<span id="count-industry">0</span>)
                         </button>
                         <button onclick="filterByBloc('europe_france')" class="tab-button flex items-center justify-center w-full sm:w-auto p-4 text-sm font-medium" id="tab-europe_france">
-                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i> 5. Europe & France (<span id="count-europe_france">0</span>)
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i> 5. Europe &amp; France (<span id="count-europe_france">0</span>)
                         </button>
                     </nav>
                 </div>
@@ -422,27 +848,22 @@
             </div>
         </main>
     </div>
-    
+
     <!-- Toast Message -->
     <div id="toast" class="fixed bottom-10 right-10 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-xl z-[100] opacity-0 transform translate-y-10 transition-all duration-300">
         <span id="toast-message">Message</span>
     </div>
 
     <!-- Script principal -->
-    <script type(="module")>
+    <script type="module">
         // --- CONFIGURATION UTILISATEUR REQUISE ---
-        /**
-         * @IMPORTANT: Modifiez cette URL pour pointer vers le fichier data.json DANS VOTRE DÉPÔT GITHUB.
-         * Allez sur data.json dans GitHub, cliquez sur "Edit", copiez l'URL de votre navigateur.
-         * EXEMPLE: "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json"
-         */
         const GITHUB_EDIT_URL = "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json";
         // -----------------------------------------
 
         // --- VARIABLES GLOBALES ---
         let allContacts = []; // Cache pour les données
         let currentBlocFilter = 'all'; // Filtre de bloc actif
-        
+
         const contactsGrid = document.getElementById('contacts-grid');
         const loadingDiv = document.getElementById('loading-contacts');
         const emptyDiv = document.getElementById('empty-contacts');
@@ -460,26 +881,25 @@
             updateDbStatus(false, "Chargement...");
             loadingDiv.classList.remove('hidden');
             contactsGrid.innerHTML = '';
-            
+
             let url = 'data.json';
             if (forceRefresh) {
-                // Astuce pour forcer le rechargement en ignorant le cache
                 url += `?t=${new Date().getTime()}`;
                 showToast("Rafraîchissement des données...", "info");
             }
-            
+
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                
+
                 // Trier les données une seule fois au chargement
                 allContacts = data.sort((a, b) => {
                     const priorityA = a.priority === 0 ? 99 : a.priority;
                     const priorityB = b.priority === 0 ? 99 : b.priority;
-                    
+
                     if (priorityA !== priorityB) {
                         return priorityA - priorityB;
                     }
@@ -493,8 +913,7 @@
                     showToast("Données rafraîchies avec succès.", "success");
                 }
 
-            } catch (error)
-            {
+            } catch (error) {
                 console.error("Erreur lors du chargement de data.json:", error);
                 showToast("Erreur de chargement des données.", "error");
                 updateDbStatus(false, "Erreur données");
@@ -503,13 +922,13 @@
                 emptyDiv.querySelector('p').textContent = "Impossible de charger le fichier data.json.";
             }
         }
-        
+
         /**
          * Met à jour les compteurs sur les onglets de bloc.
          */
         function updateTabCounts() {
             if (allContacts.length === 0) return;
-            
+
             const counts = {
                 all: allContacts.length,
                 corporate: allContacts.filter(c => c.bloc === 'corporate').length,
@@ -531,33 +950,27 @@
          * Affiche les contacts dans la grille, en appliquant TOUS les filtres.
          */
         function renderContacts() {
-            contactsGrid.innerHTML = ''; // Vider la grille
-            
+            contactsGrid.innerHTML = '';
+
             const searchTerm = filterSearch.value.toLowerCase();
             const priorityFilter = filterPriority.value;
             const statusFilter = filterStatus.value;
 
             const filteredContacts = allContacts.filter(contact => {
-                // 1. Filtre de Bloc (Onglet)
                 const matchesBloc = (currentBlocFilter === 'all') || (contact.bloc === currentBlocFilter);
-                
-                // 2. Filtre de Priorité
                 const matchesPriority = (priorityFilter === 'all') || (String(contact.priority) === priorityFilter);
-                
-                // 3. Filtre de Statut
                 const matchesStatus = (statusFilter === 'all') || (contact.statut === statusFilter);
-                
-                // 4. Filtre de Recherche
+
                 const matchesSearch = !searchTerm ||
                     contact.name.toLowerCase().includes(searchTerm) ||
                     (contact.position && contact.position.toLowerCase().includes(searchTerm)) ||
                     (contact.entity && contact.entity.toLowerCase().includes(searchTerm)) ||
                     (contact.interest && contact.interest.toLowerCase().includes(searchTerm)) ||
                     (contact.notes && contact.notes.toLowerCase().includes(searchTerm));
-                    
+
                 return matchesBloc && matchesPriority && matchesStatus && matchesSearch;
             });
-            
+
             if (filteredContacts.length === 0) {
                 loadingDiv.classList.add('hidden');
                 emptyDiv.classList.remove('hidden');
@@ -573,11 +986,12 @@
             filteredContacts.forEach(contact => {
                 contactsGrid.appendChild(createContactCard(contact));
             });
-            
-            // Ré-appliquer Lucide après injection de nouvelles icônes
-            lucide.createIcons();
+
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
         }
-        
+
         /**
          * Crée un élément DOM pour une carte de contact.
          */
@@ -586,7 +1000,6 @@
             const isArchived = contact.statut === 'Archivé';
             card.className = `contact-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col ${isArchived ? 'archived' : ''}`;
 
-            // --- Couleurs de Priorité ---
             const priorityColors = {
                 1: { text: "Niveau 1", bg: "bg-red-100", textClr: "text-red-800", border: "border-red-400" },
                 2: { text: "Niveau 2", bg: "bg-yellow-100", textClr: "text-yellow-800", border: "border-yellow-400" },
@@ -594,8 +1007,7 @@
                 0: { text: "Non défini", bg: "bg-gray-100", textClr: "text-gray-600", border: "border-gray-300" }
             };
             const priorityInfo = priorityColors[contact.priority || 0];
-            
-            // --- Couleurs de Statut ---
+
             const statusColors = {
                 "À Contacter": { text: "À Contacter", bg: "bg-blue-100", textClr: "text-blue-800" },
                 "En Cours": { text: "En Cours", bg: "bg-orange-100", textClr: "text-orange-800" },
@@ -604,22 +1016,19 @@
             };
             const statusInfo = statusColors[contact.statut || "À Contacter"];
 
-            const lastInteractionDate = contact.last_interaction ? 
+            const lastInteractionDate = contact.last_interaction ?
                 `Inter.: ${new Date(contact.last_interaction + 'T00:00:00').toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}` : '';
-            
-            const nextActionDate = contact.next_action_date ? 
+            const nextActionDate = contact.next_action_date ?
                 `Prochaine: ${new Date(contact.next_action_date + 'T00:00:00').toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' })}` : '<i>Pas de date</i>';
 
             card.innerHTML = `
-                <!-- Header de la carte avec priorité -->
                 <div class="p-5 border-l-8 ${priorityInfo.border}">
                     <div class="flex items-start justify-between mb-2">
                         <div class="flex flex-wrap gap-2">
                             <span class="text-xs font-bold uppercase px-3 py-1 rounded-full ${priorityInfo.bg} ${priorityInfo.textClr}">${priorityInfo.text}</span>
                             <span class="text-xs font-bold px-3 py-1 rounded-full ${statusInfo.bg} ${statusInfo.textClr}">${statusInfo.text}</span>
                         </div>
-                         <!-- Lien pour modifier sur GitHub (utilise la variable) -->
-                         <a href="${GITHUB_EDIT_URL}" target="_blank" title="Modifier le fichier data.json sur GitHub" class="text-gray-400 hover:text-schneider-green p-1 rounded-full flex-shrink-0">
+                        <a href="${GITHUB_EDIT_URL}" target="_blank" title="Modifier le fichier data.json sur GitHub" class="text-gray-400 hover:text-schneider-green p-1 rounded-full flex-shrink-0">
                             <i data-lucide="edit-3" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -627,20 +1036,22 @@
                     <p class="text-sm text-schneider-green font-medium">${contact.position || '<i>Poste non défini</i>'}</p>
                     <p class="text-xs text-gray-500 mt-1">${contact.entity || '<i>Entité non définie</i>'}</p>
                 </div>
-                
-                <!-- Contenu de la carte -->
+
                 <div class="p-5 space-y-4 flex-grow">
                     <div>
-                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center"><i data-lucide="brain-circuit" class="w-4 h-4 mr-2 text-gray-400"></i>Intérêt CVA</h4>
+                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center">
+                            <i data-lucide="brain-circuit" class="w-4 h-4 mr-2 text-gray-400"></i>Intérêt CVA
+                        </h4>
                         <p class="text-sm text-gray-700 whitespace-pre-wrap">${contact.interest || '<i>Non défini</i>'}</p>
                     </div>
                     <div>
-                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center"><i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-gray-400"></i>Plan d'action & Notes</h4>
+                        <h4 class="text-xs font-semibold text-gray-500 uppercase mb-1 flex items-center">
+                            <i data-lucide="clipboard-list" class="w-4 h-4 mr-2 text-gray-400"></i>Plan d'action &amp; Notes
+                        </h4>
                         <p class="text-sm text-gray-700 whitespace-pre-wrap">${contact.notes || '<i>Aucune action définie</i>'}</p>
                     </div>
                 </div>
-                
-                <!-- Footer de la carte -->
+
                 <div class="bg-gray-50 p-4 border-t flex justify-between text-xs font-medium">
                     <span class="text-gray-500" title="Dernière interaction">${lastInteractionDate}</span>
                     <span class="${contact.next_action_date ? 'text-blue-700 font-bold' : 'text-gray-500'}" title="Prochaine action">${nextActionDate}</span>
@@ -651,44 +1062,43 @@
 
         // --- GESTION DE L'UI (Navigation, Filtres) ---
 
-        /**
-         * Gère le clic sur un onglet de bloc.
-         */
-        window.filterByBloc = function(blocName) {
+        window.filterByBloc = function (blocName) {
             currentBlocFilter = blocName;
-            
-            // Mettre à jour le style des onglets
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.getElementById(`tab-${blocName}`).classList.add('active');
-            
-            // Réinitialiser la recherche et re-rendre la liste
+            const activeTab = document.getElementById(`tab-${blocName}`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
             filterSearch.value = '';
             renderContacts();
         }
 
-        window.showPage = function(pageId) {
-            // Cacher toutes les pages
+        window.showPage = function (pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
                 page.style.display = 'none';
             });
-            // Afficher la page sélectionnée
-            document.getElementById(`page-${pageId}`).style.display = 'block';
-            
-            // Gérer le style du bouton de navigation (CORRECTION CONTRASTE)
+            const pageEl = document.getElementById(`page-${pageId}`);
+            if (pageEl) {
+                pageEl.style.display = 'block';
+            }
+
             document.querySelectorAll('.nav-button').forEach(btn => {
                 btn.classList.remove('bg-schneider-green', 'text-white');
                 btn.classList.add('text-gray-300', 'hover:bg-gray-700');
             });
-            document.getElementById(`nav-${pageId}`).classList.add('bg-schneider-green', 'text-white');
-            document.getElementById(`nav-${pageId}`).classList.remove('text-gray-300', 'hover:bg-gray-700');
+            const navBtn = document.getElementById(`nav-${pageId}`);
+            if (navBtn) {
+                navBtn.classList.add('bg-schneider-green', 'text-white');
+                navBtn.classList.remove('text-gray-300', 'hover:bg-gray-700');
+            }
         }
 
         function updateDbStatus(connected, text) {
             const light = document.getElementById('db-status-light');
             const statusText = document.getElementById('db-status-text');
-            
+
             light.className = `w-3 h-3 rounded-full shrink-0 ${connected ? 'bg-green-500' : 'bg-red-500'}`;
             statusText.textContent = text;
         }
@@ -699,22 +1109,19 @@
 
         function showToast(message, type = "info") {
             if (toastTimeout) clearTimeout(toastTimeout);
-            
+
             toastMessage.textContent = message;
             toast.classList.remove('bg-green-600', 'bg-red-600', 'bg-blue-600', 'bg-gray-900', 'opacity-0', 'translate-y-10');
-            
+
             if (type === 'success') { toast.classList.add('bg-green-600'); }
             else if (type === 'error') { toast.classList.add('bg-red-600'); }
             else { toast.classList.add('bg-blue-600'); }
-            
+
             toastTimeout = setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-10');
             }, 3000);
         }
 
-        // --- ÉVÉNEMENTS INITIAUX ---
-        
-        // Attacher les écouteurs de filtre
         function debounce(fn, delay = 300) {
             let timeoutId;
             return (...args) => {
@@ -722,30 +1129,26 @@
                 timeoutId = setTimeout(() => fn.apply(null, args), delay);
             };
         }
-        
+
         filterSearch.addEventListener('input', debounce(() => renderContacts(), 300));
         filterPriority.addEventListener('change', () => renderContacts());
         filterStatus.addEventListener('change', () => renderContacts());
 
-        // Initialisation de l'application
         document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            showPage('overview'); // Afficher la page d'accueil par défaut
-            loadContactsData(); // Charger les données au démarrage
-            
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+            showPage('overview');
+            loadContactsData();
+
             if (GITHUB_EDIT_URL === "https://github.com/VOTRE_NOM/VOTRE_REPO/edit/main/data.json") {
                 console.warn("N'oubliez pas de configurer GITHUB_EDIT_URL dans index.html !");
                 showToast("Pensez à configurer le lien d'édition.", "info");
             }
         });
 
-        // Rendre les fonctions accessibles globalement
-        window.showPage = showPage;
         window.loadContactsData = loadContactsData;
         window.filterByBloc = filterByBloc;
-
     </script>
 </body>
 </html>
-
-
